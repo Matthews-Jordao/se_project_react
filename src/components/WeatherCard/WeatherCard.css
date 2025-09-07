@@ -1,7 +1,26 @@
 .weather-card {
-  background: #e3f2fd;
+  width: 100%;
+  max-width: 1360px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  background: url('/src/assets/weather-backgrounds/weather-cloudy-day.svg') center/cover no-repeat, rgba(255,255,255,1);
   border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  text-align: center;
+  margin: 1rem auto;
+  box-sizing: border-box;
+}
+
+.weather-card__temp {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: 0;
+  color: #fff;
+  background: transparent;
+  vertical-align: middle;
+  padding: 0 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
 }
