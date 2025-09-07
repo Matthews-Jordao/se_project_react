@@ -1,0 +1,11 @@
+.item-card {
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.item-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
