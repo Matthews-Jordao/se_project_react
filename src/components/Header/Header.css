@@ -1,6 +1,93 @@
+/* Import Cabinet Grotesk font */
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('/src/assets/fonts/CabinetGrotesk-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
 .header {
   width: 100%;
-  padding: 1rem;
-  background: #f5f5f5;
-  text-align: center;
+  max-width: 1360px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  margin: 32px auto 0 auto;
+  box-sizing: border-box;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  width: 89px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.header__date-location {
+  margin-left: 24px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+}
+.header__add-clothes {
+  margin-right: 20px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+.header__user-name {
+  margin-right: 12px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.header__profile-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.header__user-name {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+  margin-right: 20px;
+}
+
+.header__add-clothes {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
 }
