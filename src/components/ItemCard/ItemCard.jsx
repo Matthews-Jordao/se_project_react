@@ -3,9 +3,18 @@ import './ItemCard.css';
 
 function ItemCard({ item, onClick }) {
   return (
-    <div className="item-card" onClick={() => onClick(item)}>
-      {/* Render item summary here */}
-      <h4>{item?.name || 'Unnamed Item'}</h4>
+    <div
+      className="item-card"
+      onClick={() => onClick(item)}
+      style={{
+        backgroundImage: `url('${item?.imageUrl}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="item-card__name-wrapper">
+        <span className="item-card__name">{item?.name || 'Unnamed Item'}</span>
+      </div>
     </div>
   );
 }

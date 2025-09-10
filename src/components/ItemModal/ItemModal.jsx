@@ -6,10 +6,25 @@ function ItemModal({ item, isOpen, onClose }) {
   return (
     <div className="item-modal">
       <div className="modal-content">
-        <button className="close-btn" onClick={onClose}>×</button>
-        {/* Render item details here */}
+  <button className="close-btn" onClick={onClose} aria-label="Close"></button>
         <div className="item-details">
-          {item ? <pre>{JSON.stringify(item, null, 2)}</pre> : 'No item selected'}
+          {item ? (
+            <>
+              <img
+                src={item.imageUrl}
+                alt={item.name}
+                className="item-details__image"
+              />
+              <div className="item-details__info">
+                <h3 className="item-details__name">{item.name}</h3>
+                <p className="item-details__weather">
+                  Weather: {item.weather || 'unknown'}
+                </p>
+              </div>
+            </>
+          ) : (
+            'No item selected'
+          )}
         </div>
       </div>
     </div>
