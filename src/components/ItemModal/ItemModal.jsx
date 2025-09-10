@@ -11,7 +11,7 @@ function ItemModal({ item, isOpen, onClose }) {
           {item ? (
             <>
               <img
-                src={item.imageUrl}
+                src={item.link}
                 alt={item.name}
                 className="item-details__image"
               />

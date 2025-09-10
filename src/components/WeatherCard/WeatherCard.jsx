@@ -28,7 +28,7 @@ function WeatherCard({ weather }) {
   // Just using true for day for now (could be dynamic)
   const isDay = true;
   // Get the background image for the card
-  const bgImage = getWeatherBackground(weather?.type || weather?.description, isDay);
+  const bgImage = getWeatherBackground(weather?.weatherType, isDay);
 
   return (
     <div
@@ -38,7 +38,7 @@ function WeatherCard({ weather }) {
     >
       {/* Show the temperature on the left */}
       <div className="weather-card__temp" aria-label="Temperature">
-        {weather ? `${weather.temp}°F` : '--'}
+        {weather && typeof weather.temperature === 'number' ? `${Math.round(weather.temperature)}°F` : '--'}
       </div>
     </div>
   );

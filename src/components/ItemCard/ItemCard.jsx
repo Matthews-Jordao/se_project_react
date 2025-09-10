@@ -7,7 +7,7 @@ function ItemCard({ item, onClick }) {
       className="item-card"
       onClick={() => onClick(item)}
       style={{
-        backgroundImage: `url('${item?.imageUrl}')`,
+        backgroundImage: `url('${item?.link}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}

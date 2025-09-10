@@ -4,10 +4,11 @@ import Header from '../Header/Header.jsx';
 import WeatherCard from '../WeatherCard/WeatherCard.jsx';
 import Main from '../Main/Main.jsx';
 import ItemModal from '../ItemModal/ItemModal.jsx';
-import defaultClothingItems from '../../utils/clothingItems.js';
+import { defaultClothingItems } from '../../utils/clothingItems.js';
+import { fetchWeatherData } from '../../utils/weatherApi.js';
 
-// Example weather data
-const weather = { temp: 75, description: 'Cloudy' };
+
+
 
 function App() {
   // State for clothing items
@@ -15,6 +16,15 @@ function App() {
   // Modal state
   const [activeModal, setActiveModal] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
+  // Weather state
+  const [weather, setWeather] = useState(null);
+
+  // Fetch weather data on mount
+  useEffect(() => {
+    fetchWeatherData().then((data) => {
+      setWeather(data);
+    });
+  }, []);
 
   // Open item modal
   const handleOpenItemModal = useCallback((item) => {
