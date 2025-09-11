@@ -1,44 +1,43 @@
+
+
+// WeatherCard.jsx
+// This component shows the current weather and changes its background based on the weather type and time of day.
+// Written by a student learning React and weather APIs!
+
 import React from 'react';
 import './WeatherCard.css';
 
-// This function picks the right weather background image
+// getWeatherBackground: Picks the right background image for the weather card
 function getWeatherBackground(weatherType, isDay) {
-  // Images are in src/assets/weather-backgrounds
-  // Format: weather-type-day.svg or weather-type-night.svg
   const base = '/src/assets/weather-backgrounds/weather-';
   const ext = '.svg';
   let type = '';
-  switch (weatherType?.toLowerCase()) {
+  switch (weatherType) {
     case 'sunny': type = 'sunny'; break;
     case 'cloudy': type = 'cloudy'; break;
     case 'rain': type = 'rain'; break;
     case 'storm': type = 'storm'; break;
     case 'snow': type = 'snow'; break;
     case 'fog': type = 'fog'; break;
-    default: type = 'cloudy'; // if nothing matches, just use cloudy
+    default: type = 'cloudy'; // fallback if unknown
   }
-  // If it's daytime, use the day image, else use night
-  return isDay
-    ? `${base}${type}-day${ext}`
-    : `${base}${type}-night${ext}`;
+  // Use day or night image depending on isDay
+  return isDay ? `${base}${type}-day${ext}` : `${base}${type}-night${ext}`;
 }
 
-// WeatherCard shows the weather and the background image
+// WeatherCard: Shows the weather info and background
 function WeatherCard({ weather }) {
-  // Just using true for day for now (could be dynamic)
-  const isDay = true;
-  // Get the background image for the card
-  const bgImage = getWeatherBackground(weather?.weatherType, isDay);
-
+  if (!weather) return null; // Don't show anything if no weather data
+  const bgImage = getWeatherBackground(weather.weatherType, weather.isDay);
   return (
     <div
       className="weather-card"
       style={{ background: `url('${bgImage}') center/cover no-repeat, rgba(255,255,255,0)` }}
       aria-label="Weather Card"
     >
-      {/* Show the temperature on the left */}
+      {/* Show the temperature in big text */}
       <div className="weather-card__temp" aria-label="Temperature">
-        {weather && typeof weather.temperature === 'number' ? `${Math.round(weather.temperature)}°F` : '--'}
+        {typeof weather.temperature === 'number' ? `${Math.round(weather.temperature)}°F` : '--'}
       </div>
     </div>
   );
