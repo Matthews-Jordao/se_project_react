@@ -5,6 +5,7 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import Header from '../Header/Header.jsx';
+import AddGarmentModal from '../AddGarmentModal/AddGarmentModal.jsx';
 import WeatherCard from '../WeatherCard/WeatherCard.jsx';
 import Main from '../Main/Main.jsx';
 import ItemModal from '../ItemModal/ItemModal.jsx';
@@ -21,6 +22,8 @@ function App() {
   const [selectedItem, setSelectedItem] = useState(null);
   // Weather info from API
   const [weather, setWeather] = useState(null);
+  // State for Add Garment modal
+  const [isAddGarmentOpen, setIsAddGarmentOpen] = useState(false);
 
   // --- Fetch Weather Data on Mount ---
   useEffect(() => {
@@ -30,6 +33,7 @@ function App() {
     });
   }, []);
 
+
   // --- Modal Handlers ---
   // Open item modal when a card is clicked
   const handleOpenItemModal = useCallback((item) => {
@@ -37,10 +41,21 @@ function App() {
     setActiveModal('item');
   }, []);
 
+  // Open Add Garment modal
+  const handleOpenAddGarment = useCallback(() => {
+    setIsAddGarmentOpen(true);
+  }, []);
+
   // Close any modal
   const handleCloseModal = useCallback(() => {
     setActiveModal('');
     setSelectedItem(null);
+    setIsAddGarmentOpen(false);
+  }, []);
+
+  // Add new garment to clothingItems
+  const handleAddGarment = useCallback((newGarment) => {
+    setClothingItems(prev => [newGarment, ...prev]);
   }, []);
 
   // Close modal on Escape key
@@ -57,8 +72,8 @@ function App() {
   // --- Render the App ---
   return (
     <>
-      {/* App Header */}
-      <Header />
+  {/* App Header with Add Clothes button */}
+  <Header onAddClothes={handleOpenAddGarment} />
       {/* Weather Card shows current weather info */}
       <WeatherCard weather={weather} />
       {/* Main section with all clothing items */}
@@ -68,6 +83,12 @@ function App() {
         item={selectedItem}
         isOpen={activeModal === 'item'}
         onClose={handleCloseModal}
+      />
+      {/* Add Garment Modal */}
+      <AddGarmentModal
+        isOpen={isAddGarmentOpen}
+        onClose={handleCloseModal}
+        onAddGarment={handleAddGarment}
       />
     </>
   );

@@ -6,9 +6,9 @@ function Main({ clothingItems, onItemClick }) {
   return (
     <main className="main">
       {/* Render all clothing items */}
-      {clothingItems && clothingItems.map(item => (
-        <ItemCard key={item.id} item={item} onClick={onItemClick || (() => {})} />
-      ))}
+        {clothingItems && clothingItems.map(item => (
+          <ItemCard key={item._id} item={item} onClick={onItemClick || (() => {})} />
+        ))}
     </main>
   );
 }

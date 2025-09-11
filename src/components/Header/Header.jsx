@@ -3,7 +3,9 @@ import React from 'react';
 import './Header.css';
 
 // Header component for the top navigation bar
-function Header() {
+// Header component for the top navigation bar
+// Now supports opening the Add Garment modal via a prop
+function Header({ onAddClothes }) {
   // Static data for demonstration
   const date = 'June 15';
   const location = 'New York';
@@ -18,7 +20,7 @@ function Header() {
       </div>
       {/* Right section: Add Clothes Button, User Name, Avatar */}
       <div className="header__right">
-        <button className="header__add-clothes" title="Add new clothing item">+ Add clothes</button>
+  <button className="header__add-clothes" title="Add new clothing item" onClick={onAddClothes}>+ Add clothes</button>
         <span className="header__user-name" title="User Name">{userName}</span>
         <img src="/src/assets/Avatar.svg" alt="User Avatar" className="header__profile-photo" />
       </div>
