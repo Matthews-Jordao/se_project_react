@@ -1,6 +1,5 @@
 .main {
   flex: 1;
-  padding: 2rem;
   background: transparent;
   display: flex;
   flex-wrap: wrap;
@@ -8,6 +7,5 @@
   gap: 20px;
   width: 100%;
   max-width: 1360px;
-  margin: 2rem auto;
   box-sizing: border-box;
 }
