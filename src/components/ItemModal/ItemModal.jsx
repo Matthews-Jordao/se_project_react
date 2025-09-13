@@ -3,10 +3,15 @@ import './ItemModal.css';
 
 function ItemModal({ item, isOpen, onClose }) {
   if (!isOpen) return null;
+  function handleOverlayClick(e) {
+    if (e.target.classList.contains('item-modal')) {
+      onClose();
+    }
+  }
   return (
-    <div className="item-modal">
+    <div className="item-modal" onClick={handleOverlayClick} aria-modal="true" role="dialog">
       <div className="modal-content">
-  <button className="close-btn" onClick={onClose} aria-label="Close"></button>
+        <button className="close-btn" onClick={onClose} aria-label="Close"></button>
         <div className="item-details">
           {item ? (
             <>

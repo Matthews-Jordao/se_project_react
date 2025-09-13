@@ -37,6 +37,7 @@
    Close Button
    ========================= */
 .modal__close {
+  font-size: 20px;
   font-weight: bold;
   position: absolute;
   top: 20px;
@@ -47,11 +48,12 @@
   border: none;
   cursor: pointer;
   opacity: 0.3;
+  transition: opacity 0.2s;
+}
+
+.modal__close:hover {
+  opacity: 0.6;
   color: #000;
-  font-size: 20px;
-  padding: 0;
-  z-index: 2;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
