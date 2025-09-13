@@ -1,6 +1,5 @@
 /* Import Cabinet Grotesk font removed (now in index.css) */
 .header {
-  margin: 32px auto 0 auto;
   box-sizing: border-box;
   min-height: 40px;
   display: flex;
@@ -10,6 +9,7 @@
   width: 100%;
   max-width: 1360px;
   height: 40px;
+  margin-bottom: 28px;
 }
 .header__left {
   display: flex;

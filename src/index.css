@@ -16,12 +16,10 @@
 }
 
 body {
-  margin: 32px auto 24px auto;
+  margin: 32px 40px 24px 40px;
   padding: 0;
   box-sizing: border-box;
   background-color: rgba(243, 243, 243, 1);
-  max-width: 1360px;
-  min-width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;

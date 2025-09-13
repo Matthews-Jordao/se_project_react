@@ -1,3 +1,13 @@
+.main__title {
+  width: 100%;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0;
+  margin-bottom: 14px;
+}
 .main {
   flex: 1;
   background: transparent;
@@ -8,4 +18,5 @@
   width: 100%;
   max-width: 1360px;
   box-sizing: border-box;
+  margin-bottom: 85px;
 }

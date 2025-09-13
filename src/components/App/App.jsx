@@ -55,13 +55,13 @@ function App() {
   }, [activeModal, handleCloseModal]);
 
   return (
-    <>
+    <div className="app-wrapper">
       {/* App Header with Add Clothes button */}
       <Header onAddClothes={handleOpenAddGarment} />
       {/* Weather Card shows current weather info */}
       <WeatherCard weather={weather} />
       {/* Main section with all clothing items */}
-      <Main clothingItems={clothingItems} onItemClick={handleOpenItemModal} />
+  <Main clothingItems={clothingItems} onItemClick={handleOpenItemModal} weather={weather} />
       {/* Modal for item details */}
       <ItemModal
         item={selectedItem}
@@ -75,7 +75,7 @@ function App() {
         onAddGarment={handleAddGarment}
       />
       <Footer />
-    </>
+    </div>
   );
 }
 
