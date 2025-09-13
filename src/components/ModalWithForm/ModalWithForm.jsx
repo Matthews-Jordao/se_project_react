@@ -1,6 +1,8 @@
+
 import React, { useEffect } from 'react';
 import './ModalWithForm.css';
 
+// ModalWithForm: wraps any form in a modal
 function ModalWithForm({
   children,
   isOpen,
@@ -11,24 +13,18 @@ function ModalWithForm({
   disabled = false,
   onSubmit,
 }) {
-  // ModalWithForm.jsx
-  // This component wraps any form in a modal, and supports multiple forms by using props for title, name, and button text.
-  // Written by a student learning React!
-
-    // Close modal on Escape key
-    useEffect(() => {
-      function handleEsc(e) {
-        if (e.key === 'Escape') onClose();
-      }
-      if (isOpen) {
-        window.addEventListener('keydown', handleEsc);
-        return () => window.removeEventListener('keydown', handleEsc);
-      }
-    }, [isOpen, onClose]);
+  useEffect(() => {
+    function handleEsc(e) {
+      if (e.key === 'Escape') onClose();
+    }
+    if (isOpen) {
+      window.addEventListener('keydown', handleEsc);
+      return () => window.removeEventListener('keydown', handleEsc);
+    }
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
-  // Close modal if overlay is clicked
   function handleOverlayClick(e) {
     if (e.target.classList.contains('modal')) {
       onClose();
@@ -37,7 +33,7 @@ function ModalWithForm({
 
   return (
     <div
-      className={`modal modal_type_${name} ${isOpen ? 'modal_is-opened' : ''}`}
+      className={`modal-with-form modal_type_${name} ${isOpen ? 'modal_is-opened' : ''}`}
       onClick={handleOverlayClick}
       aria-modal="true"
       role="dialog"
@@ -56,5 +52,5 @@ function ModalWithForm({
   );
 }
 
-  export default ModalWithForm;
+export default ModalWithForm;
 

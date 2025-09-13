@@ -1,13 +1,7 @@
-.modal__title {
-  margin-bottom: 1rem;
-  font-family: 'Cabinet Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: 0;
-  text-align: left;
-  color: #222;
-}
+
+/* =========================
+   Modal Overlay
+   ========================= */
 .modal-with-form {
   position: fixed;
   top: 0;
@@ -20,18 +14,30 @@
   justify-content: center;
   z-index: 1000;
 }
+
+/* =========================
+   Modal Content
+   ========================= */
 .modal__content {
   background: #fff;
-  border-radius: 12px;
   position: relative;
-  min-width: 340px;
-  max-width: 95vw;
+  width: 496px;
+  height: 436px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.10);
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  padding: 28px 28px 36px 28px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  box-sizing: border-box;
 }
 
+/* =========================
+   Close Button
+   ========================= */
 .modal__close {
+  font-weight: bold;
   position: absolute;
   top: 20px;
   right: 28px;
@@ -42,7 +48,193 @@
   cursor: pointer;
   opacity: 0.3;
   color: #000;
-  font-size: 16px;
+  font-size: 20px;
   padding: 0;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   Title
+   ========================= */
+.modal__title {
+  margin: 0 0 24px 0;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #222;
+}
+
+/* =========================
+   Form
+   ========================= */
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+/* =========================
+   Input Group
+   ========================= */
+.modal__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* =========================
+   Label
+   ========================= */
+.modal__label {
+  display: block;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #222;
+}
+
+/* =========================
+   Input
+   ========================= */
+.modal__input {
+  width: 440px;
+  height: 24px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  opacity: 1;
+  position: relative;
+}
+
+/* =========================
+   Weather Group
+   ========================= */
+.modal__weather-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================
+   Weather Options
+   ========================= */
+.modal__weather-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* =========================
+   Weather Row
+   ========================= */
+.modal__weather-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* =========================
+   Weather Button
+   ========================= */
+.modal__weather-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background: #fff;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  transition: border-color 0.2s, background 0.2s;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+}
+.modal__weather-btn.selected {
+  border-color: #000000;
+}
+.modal__weather-btn.selected::after {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #000;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* =========================
+   Weather Text
+   ========================= */
+.modal__weather-text {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.modal__weather-btn.selected + .modal__weather-text {
+  color: rgba(0, 0, 0, 1);
+}
+
+/* =========================
+   Submit Button
+   ========================= */
+.modal__submit {
+  width: 124px;
+  height: 36px;
+  border-radius: 4px;
+  border: none;
+  background: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  opacity: 1;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+.modal__submit:disabled {
+  background: rgba(0, 0, 0, 0.3);
+  color: #888;
+  cursor: not-allowed;
+}
+.modal__submit:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* =========================
+   Error Message
+   ========================= */
+.modal__error {
+  color: rgba(255, 77, 0, 1);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin-left: 8px;
 }

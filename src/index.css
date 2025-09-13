@@ -1,3 +1,20 @@
+
+/* Global Cabinet Grotesk font import */
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('/src/assets/fonts/CabinetGrotesk-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('/src/assets/fonts/CabinetGrotesk-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
 :root {
   background-color: rgba(243, 243, 243, 1);
 }
