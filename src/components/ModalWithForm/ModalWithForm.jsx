@@ -26,7 +26,7 @@ function ModalWithForm({
   if (!isOpen) return null;
 
   function handleOverlayClick(e) {
-    if (e.target.classList.contains('modal')) {
+    if (e.target.classList.contains('modal-with-form')) {
       onClose();
     }
   }

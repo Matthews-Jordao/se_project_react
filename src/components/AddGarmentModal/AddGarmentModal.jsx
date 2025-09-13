@@ -15,7 +15,13 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!isFormValid) return;
-    onAddGarment({ name, link, weather });
+    const newGarment = {
+      _id: Date.now().toString(),
+      name,
+      link,
+      weather,
+    };
+    onAddGarment(newGarment);
     setName('');
     setLink('');
     setWeather('');
@@ -80,13 +86,6 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
           ))}
         </div>
       </div>
-      <style>{`
-        .modal__submit:disabled {
-          background: #ccc;
-          color: #888;
-          cursor: not-allowed;
-        }
-      `}</style>
     </ModalWithForm>
   );
 }

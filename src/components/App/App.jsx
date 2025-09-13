@@ -58,7 +58,7 @@ function App() {
   return (
     <div className="app-wrapper">
       {/* App Header with Add Clothes button */}
-      <Header onAddClothes={handleOpenAddGarment} />
+  <Header onAddClothes={handleOpenAddGarment} city={weather?.city} />
       {/* Weather Card shows current weather info */}
       <WeatherCard weather={weather} />
       {/* Main section with all clothing items */}

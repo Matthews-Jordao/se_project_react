@@ -3,12 +3,12 @@ import React from 'react';
 import './Header.css';
 
 // Header component for the top navigation bar
-// Header component for the top navigation bar
 // Now supports opening the Add Garment modal via a prop
-function Header({ onAddClothes }) {
-  // Static data for demonstration
-  const date = 'June 15';
-  const location = 'New York';
+function Header({ onAddClothes, city }) {
+  // Dynamic date
+  const now = new Date();
+  const date = now.toLocaleString('en-US', { month: 'long', day: 'numeric' });
+  const location = typeof city === 'string' && city.length > 0 ? city : 'Unknown';
   const userName = 'John Doe';
 
   return (
