@@ -9,7 +9,8 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
   const [link, setLink] = useState('');
   const [weather, setWeather] = useState('');
 
-  const isFormValid = name.trim() && link.trim() && weather;
+  const isValidImageLink = /^https?:\/\/.+\.(jpg|jpeg|png|gif|svg)$/.test(link.trim());
+  const isFormValid = name.trim() && isValidImageLink && weather;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,6 +30,7 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      disabled={!isFormValid}
     >
       {/* Name input group */}
       <div className="modal__input-group">
