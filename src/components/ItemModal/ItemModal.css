@@ -17,7 +17,7 @@
   justify-content: center;
   z-index: 1000;
 }
-.modal-content {
+ .item-modal__content {
   background: #fff;
   border-radius: 16px;
   width: 498px;

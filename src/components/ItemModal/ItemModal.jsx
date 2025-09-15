@@ -10,7 +10,7 @@ function ItemModal({ item, isOpen, onClose }) {
   }
   return (
     <div className="item-modal" onClick={handleOverlayClick} aria-modal="true" role="dialog">
-      <div className="modal-content">
+  <div className="item-modal__content">
         <button className="close-btn" onClick={onClose} aria-label="Close"></button>
         <div className="item-details">
           {item ? (
