@@ -1,0 +1,148 @@
+/* Temperature Toggle Switch */
+
+/* Main container */
+.temperature-toggle {
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.temperature-toggle__container {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Hidden checkbox */
+.temperature-toggle__input {
+  opacity: 0;
+  position: absolute;
+}
+
+/* Toggle track background */
+.temperature-toggle__track {
+  width: 52px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  border: 2px solid #7E7E7E;
+  position: relative;
+}
+
+/* F and C letters */
+.temperature-toggle__option {
+  font-family: 'Cabinet Grotesk';
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  z-index: 3;
+  top: -2px;
+}
+
+.temperature-toggle__option_fahrenheit {
+  left: -2px;
+  color: #FFFFFF;
+}
+
+.temperature-toggle__option_celsius {
+  right: -2px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Black sliding circle */
+.temperature-toggle__selector {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-color: #000000;
+  border-radius: 50%;
+  left: -2px;
+  top: -2px;
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+/* Toggle states */
+.temperature-toggle__input:checked + .temperature-toggle__track .temperature-toggle__selector {
+  transform: translateX(28px);
+}
+
+.temperature-toggle__input:checked + .temperature-toggle__track .temperature-toggle__option_fahrenheit {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.temperature-toggle__input:checked + .temperature-toggle__track .temperature-toggle__option_celsius {
+  color: #FFFFFF;
+}
+
+/* Hover effects */
+.temperature-toggle__container:hover .temperature-toggle__track {
+  border-color: rgba(0, 0, 0, 1);
+}
+
+.temperature-toggle__container:hover .temperature-toggle__option_fahrenheit {
+  color: #FFFFFF;
+}
+
+.temperature-toggle__container:hover .temperature-toggle__option_celsius {
+  color: rgba(0, 0, 0, 1);
+}
+
+.temperature-toggle__input:checked + .temperature-toggle__track:hover .temperature-toggle__option_fahrenheit {
+  color: rgba(0, 0, 0, 1);
+}
+
+.temperature-toggle__input:checked + .temperature-toggle__track:hover .temperature-toggle__option_celsius {
+  color: #FFFFFF;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .temperature-toggle__track {
+    width: 44px;
+    height: 20px;
+  }
+  
+  .temperature-toggle__option {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+  
+  .temperature-toggle__selector {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .temperature-toggle__input:checked + .temperature-toggle__track .temperature-toggle__selector {
+    transform: translateX(24px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .temperature-toggle__track {
+    width: 40px;
+    height: 18px;
+  }
+  
+  .temperature-toggle__option {
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
+  }
+  
+  .temperature-toggle__selector {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .temperature-toggle__input:checked + .temperature-toggle__track .temperature-toggle__selector {
+    transform: translateX(22px);
+  }
+}

@@ -70,7 +70,10 @@ export function extractWeatherInfo(apiData) {
   // Return just the info our app needs
   return {
     city: apiData.name, // City name
-    temperature: apiData.main?.temp, // Current temp in Fahrenheit
+    temperature: {
+      F: apiData.main?.temp, // Current temp in Fahrenheit
+      C: Math.round((apiData.main?.temp - 32) * 5/9) // Convert to Celsius
+    },
     weatherType, // sunny, cloudy, rain, etc.
     description: apiData.weather?.[0]?.description || '', // More details
     isDay, // true if it's daytime

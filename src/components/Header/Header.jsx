@@ -1,9 +1,10 @@
 
 import React from 'react';
 import './Header.css';
+import ToggleSwitch from '../ToggleSwitch/ToggleSwitch.jsx';
 
 // Header component for the top navigation bar
-// Now supports opening the Add Garment modal via a prop
+// Now supports opening the Add Garment modal via a prop and temperature unit toggle
 function Header({ onAddClothes, city }) {
   // Dynamic date
   const now = new Date();
@@ -18,8 +19,9 @@ function Header({ onAddClothes, city }) {
         <img src="/src/assets/Logo.svg" alt="App Logo" className="header__logo" />
         <span className="header__date-location">{date}, {location}</span>
       </div>
-      {/* Right section: Add Clothes Button, User Name, Avatar */}
+      {/* Right section: Add Clothes Button, Temperature Toggle, User Name, Avatar */}
       <div className="header__right">
+        <ToggleSwitch />
   <button className="header__add-clothes" title="Add new clothing item" onClick={onAddClothes}>+ Add clothes</button>
         <span className="header__user-name" title="User Name">{userName}</span>
         <img src="/src/assets/Avatar.svg" alt="User Avatar" className="header__profile-photo" />

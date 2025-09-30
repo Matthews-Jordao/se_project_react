@@ -4,8 +4,9 @@
 // This component shows the current weather and changes its background based on the weather type and time of day.
 // Written by a student learning React and weather APIs!
 
-import React from 'react';
+import React, { useContext } from 'react';
 import './WeatherCard.css';
+import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext.js';
 
 // getWeatherBackground: Picks the right background image for the weather card
 function getWeatherBackground(weatherType, isDay) {
@@ -27,6 +28,8 @@ function getWeatherBackground(weatherType, isDay) {
 
 // WeatherCard: Shows the weather info and background
 function WeatherCard({ weather }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  
   if (!weather) return null; // Don't show anything if no weather data
   const bgImage = getWeatherBackground(weather.weatherType, weather.isDay);
   return (
@@ -37,7 +40,7 @@ function WeatherCard({ weather }) {
     >
       {/* Show the temperature in big text */}
       <div className="weather-card__temp" aria-label="Temperature">
-        {typeof weather.temperature === 'number' ? `${Math.round(weather.temperature)}°F` : '--'}
+        {weather.temperature ? `${weather.temperature[currentTemperatureUnit]}°${currentTemperatureUnit}` : '--'}
       </div>
     </div>
   );

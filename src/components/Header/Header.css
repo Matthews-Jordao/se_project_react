@@ -31,9 +31,9 @@
 .header__right {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 .header__add-clothes {
-  margin-right: 20px;
   font-family: 'Cabinet Grotesk', sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -45,7 +45,6 @@
   color: inherit;
 }
 .header__user-name {
-  margin-right: 12px;
   font-family: 'Cabinet Grotesk', sans-serif;
   font-weight: 700;
   font-size: 20px;
