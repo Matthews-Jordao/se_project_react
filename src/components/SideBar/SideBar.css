@@ -1,0 +1,47 @@
+/* Sidebar styles */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-width: 200px;
+}
+
+.sidebar__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.sidebar__username {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+  text-align: center;
+  color: inherit;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    flex-direction: row;
+    min-width: auto;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .sidebar__avatar {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0;
+  }
+  
+  .sidebar__username {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

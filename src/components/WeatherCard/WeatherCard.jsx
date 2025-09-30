@@ -35,7 +35,7 @@ function WeatherCard({ weather }) {
   return (
     <div
       className="weather-card"
-      style={{ background: `url('${bgImage}') center/cover no-repeat, rgba(255,255,255,0)` }}
+      style={{ background: `url('${bgImage}') right center/cover no-repeat, rgba(255,255,255,0)` }}
       aria-label="Weather Card"
     >
       {/* Show the temperature in big text */}

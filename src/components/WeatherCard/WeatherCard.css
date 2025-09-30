@@ -4,7 +4,7 @@
   height: 80px;
   display: flex;
   align-items: center;
-  background: url('/src/assets/weather-backgrounds/weather-cloudy-day.svg') center/cover no-repeat, rgba(255,255,255,1);
+  background: url('/src/assets/weather-backgrounds/weather-cloudy-day.svg') right center/cover no-repeat, rgba(255,255,255,1);
   border-radius: 8px;
   box-sizing: border-box;
   margin-bottom: 40px;
