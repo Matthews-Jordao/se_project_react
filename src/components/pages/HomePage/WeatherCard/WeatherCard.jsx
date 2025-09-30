@@ -6,7 +6,7 @@
 
 import React, { useContext } from 'react';
 import './WeatherCard.css';
-import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext.js';
+import CurrentTemperatureUnitContext from '../../../../contexts/CurrentTemperatureUnitContext.js';
 
 // getWeatherBackground: Picks the right background image for the weather card
 function getWeatherBackground(weatherType, isDay) {

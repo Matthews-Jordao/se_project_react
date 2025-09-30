@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import ModalWithForm from '../ModalWithForm/ModalWithForm.jsx';
+import ModalWithForm from '../../common/ModalWithForm/ModalWithForm.jsx';
 import './AddGarmentModal.css';
 
 function AddGarmentModal({ isOpen, onClose, onAddGarment }) {

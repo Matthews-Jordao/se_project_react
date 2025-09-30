@@ -16,7 +16,7 @@
 }
 
 body {
-  margin: 32px 40px 24px 40px;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: rgba(243, 243, 243, 1);

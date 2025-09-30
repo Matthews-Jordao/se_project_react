@@ -5,11 +5,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: none;
+  background: transparent;
   width: 100%;
-  max-width: 1360px;
   height: 40px;
   margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
 }
 .header__left {
   display: flex;
@@ -56,4 +57,16 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.header__profile-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 12px;
+}
+
+.header__profile-link:hover {
+  opacity: 0.8;
 }

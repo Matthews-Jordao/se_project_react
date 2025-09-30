@@ -2,7 +2,7 @@ import React from 'react';
 import './SideBar.css';
 
 // Sidebar component for user profile
-// Shows user avatar and name
+// Shows user avatar and name side by side
 function SideBar() {
   const userName = 'John Doe';
 

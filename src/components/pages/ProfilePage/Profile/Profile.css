@@ -1,0 +1,16 @@
+.profile {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  box-sizing: border-box;
+  margin-bottom: 85px;
+}
+
+.profile__sidebar {
+  min-width: 200px;
+  flex-shrink: 0;
+}
+
+.profile__clothing-section {
+  flex: 1;
+}

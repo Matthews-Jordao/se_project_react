@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './ToggleSwitch.css';
-import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext.js';
+import CurrentTemperatureUnitContext from '../../../contexts/CurrentTemperatureUnitContext.js';
 
 // Temperature toggle switch component
 // Allows users to switch between Fahrenheit and Celsius
