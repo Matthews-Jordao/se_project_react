@@ -1,0 +1,108 @@
+.delete-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+.delete-modal__content {
+  background: #fff;
+  border-radius: 16px;
+  width: 360px;
+  min-height: 220px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
+  position: relative;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.delete-modal__close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 20px;
+  height: 20px;
+  background: url('/src/assets/close-btn.svg') center/cover no-repeat;
+  border: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: filter 0.2s;
+}
+
+.delete-modal__close-btn:hover {
+  filter: brightness(0.7);
+}
+
+.delete-modal__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.delete-modal__title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0 0 16px 0;
+  color: #000;
+}
+
+.delete-modal__text {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0 0 32px 0;
+  color: #666;
+}
+
+.delete-modal__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.delete-modal__confirm-btn {
+  background: #FC0A0A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-modal__confirm-btn:hover {
+  background: #d60808;
+}
+
+.delete-modal__cancel-btn {
+  background: transparent;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-modal__cancel-btn:hover {
+  background: #f5f5f5;
+}

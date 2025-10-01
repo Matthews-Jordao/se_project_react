@@ -2,12 +2,14 @@ import React from 'react';
 import './ItemCard.css';
 
 function ItemCard({ item, onClick }) {
+  const imageUrl = item?.link || item?.imageUrl; // Handle both property names
+  
   return (
     <div
       className="item-card"
       onClick={() => onClick(item)}
       style={{
-        backgroundImage: `url('${item?.link}')`,
+        backgroundImage: `url('${imageUrl}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}

@@ -19,7 +19,7 @@ function ClothesSection({ clothingItems, onItemClick, onAddClothes }) {
           <ItemCard
             key={item._id}
             item={item}
-            onItemClick={onItemClick}
+            onClick={onItemClick}
           />
         ))}
       </div>

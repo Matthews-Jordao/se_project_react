@@ -83,3 +83,22 @@
   letter-spacing: 0;
   color: #555;
 }
+
+.item-details__delete-btn {
+  background: none;
+  border: none;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(255, 77, 0, 1);
+  cursor: pointer;
+  padding: 0;
+  margin-top: 12px;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+.item-details__delete-btn:hover {
+  opacity: 0.8;
+}
