@@ -1,4 +1,4 @@
-/* Page container to center the app */
+/* Main page container */
 .page {
 	width: 100%;
 	display: flex;
@@ -6,7 +6,7 @@
 	align-items: flex-start;
 }
 
-/* Generic app wrapper for centering and basic layout */
+/* App wrapper - main content container */
 .app-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -20,7 +20,7 @@
 	padding: 0;
 }
 
-/* Page-specific styling - only differences from app-wrapper */
+/* Home page layout */
 .home-page {
 	width: 100%;
 	display: flex;
@@ -28,6 +28,7 @@
 	align-items: center;
 }
 
+/* Profile page layout */
 .profile-page {
 	width: 100%;
 	display: flex;

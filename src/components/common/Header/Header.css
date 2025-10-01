@@ -11,16 +11,22 @@
   margin-bottom: 28px;
   position: relative;
   z-index: 1;
+  gap: 20px;
 }
+
 .header__left {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
+
 .header__logo {
   width: 89px;
   height: 40px;
   object-fit: contain;
+  flex-shrink: 0;
 }
+
 .header__date-location {
   margin-left: 24px;
   font-family: 'Cabinet Grotesk', sans-serif;
@@ -28,11 +34,49 @@
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .header__right {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+  .header__right {
+    gap: 16px;
+  }
+  
+  .header__date-location {
+    margin-left: 16px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .header__right {
+    gap: 12px;
+  }
+  
+  .header__date-location {
+    margin-left: 12px;
+    font-size: 16px;
+  }
+  
+  .header__logo {
+    width: 70px;
+    height: 32px;
+  }
 }
 .header__add-clothes {
   font-family: 'Cabinet Grotesk', sans-serif;

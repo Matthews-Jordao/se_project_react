@@ -60,7 +60,6 @@
   
   .clothes-section__items {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    max-width: calc(2 * 280px + 1 * 20px); /* 2 items max on tablet */
     gap: 16px;
   }
   
@@ -74,5 +73,6 @@
 @media screen and (max-width: 480px) {
   .clothes-section__items {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 }

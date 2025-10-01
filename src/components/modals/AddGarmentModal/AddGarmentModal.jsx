@@ -4,7 +4,6 @@ import ModalWithForm from '../../common/ModalWithForm/ModalWithForm.jsx';
 import './AddGarmentModal.css';
 
 function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
-  // Form state
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
   const [weather, setWeather] = useState('');
@@ -15,12 +14,14 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!isFormValid) return;
+    
     const newGarment = {
       _id: Date.now().toString(),
       name,
       link,
       weather,
     };
+    
     onAddGarment(newGarment);
     setName('');
     setLink('');
@@ -38,7 +39,6 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
       onSubmit={handleSubmit}
       disabled={!isFormValid}
     >
-      {/* Name input group */}
       <div className="modal__input-group">
         <label className="modal__label" htmlFor="garment-name">Name</label>
         <input
@@ -51,7 +51,7 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
           required
         />
       </div>
-      {/* Image link input group */}
+      
       <div className="modal__input-group">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <label className="modal__label" htmlFor="garment-link">Image</label>
@@ -69,7 +69,7 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
           required
         />
       </div>
-      {/* Weather type select */}
+      
       <div className="modal__weather-group">
         <div className="modal__label">Select the weather type:</div>
         <div className="modal__weather-options">
@@ -81,7 +81,9 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
                 onClick={() => setWeather(type)}
                 aria-label={type}
               />
-              <span className="modal__weather-text">{type.charAt(0).toUpperCase() + type.slice(1)}</span>
+              <span className="modal__weather-text">
+                {type.charAt(0).toUpperCase() + type.slice(1)}
+              </span>
             </div>
           ))}
         </div>

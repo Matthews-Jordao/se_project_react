@@ -1,35 +1,47 @@
 import './App.css';
 
-
 import React, { useState, useCallback, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Common components
 import Header from '../common/Header/Header.jsx';
-import AddGarmentModal from '../modals/AddGarmentModal/AddGarmentModal.jsx';
-import AddItemModal from '../modals/AddItemModal/AddItemModal.jsx';
+import Footer from '../common/Footer/Footer.jsx';
+
+// Home page components
 import WeatherCard from '../pages/HomePage/WeatherCard/WeatherCard.jsx';
 import Main from '../pages/HomePage/Main/Main.jsx';
+
+// Profile page components
 import Profile from '../pages/ProfilePage/Profile/Profile.jsx';
 import SideBar from '../pages/ProfilePage/SideBar/SideBar.jsx';
 import ClothesSection from '../pages/ProfilePage/ClothesSection/ClothesSection.jsx';
+
+// Modal components
+import AddGarmentModal from '../modals/AddGarmentModal/AddGarmentModal.jsx';
+import AddItemModal from '../modals/AddItemModal/AddItemModal.jsx';
 import ItemModal from '../modals/ItemModal/ItemModal.jsx';
 import DeleteConfirmationModal from '../modals/DeleteConfirmationModal/DeleteConfirmationModal.jsx';
-import Footer from '../common/Footer/Footer.jsx';
+
+// Utils and contexts
 import { fetchWeatherData } from '../../utils/weatherApi.js';
 import { getItems, addItem, deleteItem } from '../../utils/api.js';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext.js';
 
 
 function App() {
+  // App state
   const [clothingItems, setClothingItems] = useState([]);
+  const [weather, setWeather] = useState(null);
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
+  
+  // Modal state
   const [activeModal, setActiveModal] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
-  const [weather, setWeather] = useState(null);
   const [isAddGarmentOpen, setIsAddGarmentOpen] = useState(false);
-  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
 
-  // Fetch weather data and clothing items on component mount
+  // Load initial data
   useEffect(() => {
     fetchWeatherData().then((data) => {
       setWeather(data);

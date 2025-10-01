@@ -7,7 +7,8 @@ import CurrentTemperatureUnitContext from '../../../../contexts/CurrentTemperatu
 function Main({ clothingItems, onItemClick, weather }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   
-  const temp = weather?.temperature?.F; // Use Fahrenheit for weather condition logic
+  // Get current weather condition for filtering
+  const temp = weather?.temperature?.F;
   const weatherCondition = typeof temp === 'number' ? getWeatherCondition(temp) : null;
   const filteredItems = clothingItems?.filter(item => item.weather === weatherCondition);
   
@@ -18,7 +19,7 @@ function Main({ clothingItems, onItemClick, weather }) {
           Today is {weather.temperature[currentTemperatureUnit]}°{currentTemperatureUnit} / You may want to wear:
         </div>
       )}
-      {/* Render only clothing items that match the current weather */}
+      
       {filteredItems && filteredItems.length > 0 ? (
         filteredItems.map(item => (
           <ItemCard key={item._id} item={item} onClick={onItemClick || (() => {})} />

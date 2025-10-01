@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import './ModalWithForm.css';
 
-// ModalWithForm: wraps any form in a modal
 function ModalWithForm({
   children,
   isOpen,
@@ -45,7 +44,9 @@ function ModalWithForm({
         <h2 className="modal__title">{title}</h2>
         <form className="modal__form" name={name} onSubmit={onSubmit}>
           {children}
-          <button className="modal__submit" type="submit" disabled={disabled}>{buttonText}</button>
+          <button className="modal__submit" type="submit" disabled={disabled}>
+            {buttonText}
+          </button>
         </form>
       </div>
     </div>
