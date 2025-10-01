@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import './Main.css';
 import ItemCard from '../../../common/ItemCard/ItemCard.jsx';
+import WeatherCard from '../WeatherCard/WeatherCard.jsx';
 import { getWeatherCondition } from '../../../../utils/weatherApi.js';
 import CurrentTemperatureUnitContext from '../../../../contexts/CurrentTemperatureUnitContext.js';
 
@@ -13,6 +14,8 @@ function Main({ clothingItems, onItemClick, weather }) {
   
   return (
     <main className="main">
+      <WeatherCard weather={weather} />
+      
       {weather?.temperature && (
         <div className="main__title">
           Today is {weather.temperature[currentTemperatureUnit]}°{currentTemperatureUnit} / You may want to wear:

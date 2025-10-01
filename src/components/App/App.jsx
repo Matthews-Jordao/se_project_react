@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Header from '../common/Header/Header.jsx';
 import Footer from '../common/Footer/Footer.jsx';
-import WeatherCard from '../pages/HomePage/WeatherCard/WeatherCard.jsx';
 import Main from '../pages/HomePage/Main/Main.jsx';
 import Profile from '../pages/ProfilePage/Profile/Profile.jsx';
 import SideBar from '../pages/ProfilePage/SideBar/SideBar.jsx';
@@ -125,7 +124,6 @@ function App() {
                 <div className="app-wrapper">
                   <div className="home-page">
                     <Header onAddClothes={handleOpenAddGarment} city={weather?.city} />
-                    <WeatherCard weather={weather} />
                     <Main clothingItems={clothingItems} onItemClick={handleOpenItemModal} weather={weather} />
                     <Footer />
                   </div>
@@ -138,7 +136,6 @@ function App() {
                 <div className="app-wrapper">
                   <div className="home-page">
                     <Header onAddClothes={handleOpenAddGarment} city={weather?.city} />
-                    <WeatherCard weather={weather} />
                     <Main clothingItems={clothingItems} onItemClick={handleOpenItemModal} weather={weather} />
                     <Footer />
                   </div>
