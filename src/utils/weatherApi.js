@@ -61,7 +61,7 @@ export function extractWeatherInfo(apiData) {
     city: apiData.name,
     temperature: {
       F: apiData.main?.temp,
-      C: Math.round((apiData.main?.temp - 32) * 5/9)
+      C: Math.round((apiData.main?.temp - 32) * 5/9) // convert F to C
     },
     weatherType,
     description: apiData.weather?.[0]?.description || '',

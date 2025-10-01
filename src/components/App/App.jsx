@@ -3,82 +3,65 @@ import './App.css';
 import React, { useState, useCallback, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// Common components
 import Header from '../common/Header/Header.jsx';
 import Footer from '../common/Footer/Footer.jsx';
-
-// Home page components
 import WeatherCard from '../pages/HomePage/WeatherCard/WeatherCard.jsx';
 import Main from '../pages/HomePage/Main/Main.jsx';
-
-// Profile page components
 import Profile from '../pages/ProfilePage/Profile/Profile.jsx';
 import SideBar from '../pages/ProfilePage/SideBar/SideBar.jsx';
 import ClothesSection from '../pages/ProfilePage/ClothesSection/ClothesSection.jsx';
-
-// Modal components
 import AddGarmentModal from '../modals/AddGarmentModal/AddGarmentModal.jsx';
 import AddItemModal from '../modals/AddItemModal/AddItemModal.jsx';
 import ItemModal from '../modals/ItemModal/ItemModal.jsx';
 import DeleteConfirmationModal from '../modals/DeleteConfirmationModal/DeleteConfirmationModal.jsx';
-
-// Utils and contexts
 import { fetchWeatherData } from '../../utils/weatherApi.js';
 import { getItems, addItem, deleteItem } from '../../utils/api.js';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext.js';
 
 
 function App() {
-  // App state
   const [clothingItems, setClothingItems] = useState([]);
   const [weather, setWeather] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
   
-  // Modal state
+  // Modal states
   const [activeModal, setActiveModal] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
   const [isAddGarmentOpen, setIsAddGarmentOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
 
-  // Load initial data
   useEffect(() => {
-    fetchWeatherData().then((data) => {
-      setWeather(data);
-    }).catch(console.error);
-
-    getItems().then((items) => {
-      setClothingItems(items);
-    }).catch(console.error);
+    fetchWeatherData().then(setWeather).catch(console.error);
+    getItems().then(setClothingItems).catch(console.error);
   }, []);
 
-
-  const handleOpenItemModal = useCallback((item) => {
+  const handleOpenItemModal = (item) => {
     setSelectedItem(item);
     setActiveModal('item');
-  }, []);
+  };
 
-  const handleOpenAddGarment = useCallback(() => {
+  const handleOpenAddGarment = () => {
     setIsAddGarmentOpen(true);
-  }, []);
+  };
 
-  const handleCloseModal = useCallback(() => {
+  const handleCloseModal = () => {
     setActiveModal('');
     setSelectedItem(null);
     setIsAddGarmentOpen(false);
     setIsDeleteModalOpen(false);
     setItemToDelete(null);
-  }, []);
+  };
 
-  const handleAddGarment = useCallback((newGarment) => {
+  const handleAddGarment = (newGarment) => {
     addItem(newGarment)
       .then((savedItem) => {
         setClothingItems(prev => [savedItem, ...prev]);
       })
       .catch(console.error);
-  }, []);
+  };
 
-  const handleAddItem = useCallback((newItem, resetForm) => {
+  const handleAddItem = (newItem, resetForm) => {
     addItem(newItem)
       .then((savedItem) => {
         setClothingItems(prev => [savedItem, ...prev]);
@@ -86,23 +69,23 @@ function App() {
         setIsAddGarmentOpen(false);
       })
       .catch(console.error);
-  }, []);
+  };
 
-  const handleCardDelete = useCallback((cardToDelete) => {
+  const handleCardDelete = (cardToDelete) => {
     deleteItem(cardToDelete._id)
       .then(() => {
         setClothingItems(prev => prev.filter(item => item._id !== cardToDelete._id));
         handleCloseModal();
       })
       .catch(console.error);
-  }, [handleCloseModal]);
+  };
 
-  const handleOpenDeleteModal = useCallback((cardToDelete) => {
+  const handleOpenDeleteModal = (cardToDelete) => {
     setItemToDelete(cardToDelete);
     setIsDeleteModalOpen(true);
-  }, []);
+  };
 
-  const handleConfirmDelete = useCallback(() => {
+  const handleConfirmDelete = () => {
     if (itemToDelete) {
       deleteItem(itemToDelete._id)
         .then(() => {
@@ -111,23 +94,23 @@ function App() {
         })
         .catch(console.error);
     }
-  }, [itemToDelete, handleCloseModal]);
-
-  const handleToggleSwitchChange = () => {
-    currentTemperatureUnit === 'F'
-      ? setCurrentTemperatureUnit('C')
-      : setCurrentTemperatureUnit('F');
   };
 
+  const handleToggleSwitchChange = () => {
+    setCurrentTemperatureUnit(currentTemperatureUnit === 'F' ? 'C' : 'F');
+  };
+
+  // Close modals with Escape key
   useEffect(() => {
-    function handleEsc(e) {
+    const handleEsc = (e) => {
       if (e.key === 'Escape') handleCloseModal();
+    };
+    
+    if (activeModal || isAddGarmentOpen || isDeleteModalOpen) {
+      document.addEventListener('keydown', handleEsc);
+      return () => document.removeEventListener('keydown', handleEsc);
     }
-    if (activeModal) {
-      window.addEventListener('keydown', handleEsc);
-      return () => window.removeEventListener('keydown', handleEsc);
-    }
-  }, [activeModal, handleCloseModal]);
+  }, [activeModal, isAddGarmentOpen, isDeleteModalOpen]);
 
   return (
     <div className="page">

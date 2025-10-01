@@ -3,7 +3,26 @@
   flex-direction: column;
   gap: 12px;
   margin-left: 32px;
+  margin-right: 32px;
   margin-top: 20px;
+  width: calc(100% - 64px);
+}
+
+.item-details__name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.item-details__name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-style: bold;
+  line-height: 24px;
+  letter-spacing: 0;
+  flex-shrink: 0;
 }
 .item-modal {
   position: fixed;
@@ -94,9 +113,8 @@
   color: rgba(255, 77, 0, 1);
   cursor: pointer;
   padding: 0;
-  margin-top: 12px;
-  text-decoration: underline;
   transition: opacity 0.2s;
+  flex-shrink: 0;
 }
 
 .item-details__delete-btn:hover {

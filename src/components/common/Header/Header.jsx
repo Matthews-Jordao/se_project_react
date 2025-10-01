@@ -7,7 +7,7 @@ import ToggleSwitch from '../ToggleSwitch/ToggleSwitch.jsx';
 function Header({ onAddClothes, city }) {
   const now = new Date();
   const date = now.toLocaleString('en-US', { month: 'long', day: 'numeric' });
-  const location = typeof city === 'string' && city.length > 0 ? city : 'Unknown';
+  const location = city || 'Unknown';
   const userName = 'John Doe';
 
   return (

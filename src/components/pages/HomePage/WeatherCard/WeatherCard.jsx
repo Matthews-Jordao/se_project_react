@@ -3,23 +3,20 @@ import React, { useContext } from 'react';
 import './WeatherCard.css';
 import CurrentTemperatureUnitContext from '../../../../contexts/CurrentTemperatureUnitContext.js';
 
-// Get the correct background image based on weather and time
 function getWeatherBackground(weatherType, isDay) {
   const base = '/src/assets/weather-backgrounds/weather-';
   const ext = '.svg';
-  let type = '';
   
-  switch (weatherType) {
-    case 'sunny': type = 'sunny'; break;
-    case 'cloudy': type = 'cloudy'; break;
-    case 'rain': type = 'rain'; break;
-    case 'storm': type = 'storm'; break;
-    case 'snow': type = 'snow'; break;
-    case 'fog': type = 'fog'; break;
-    default: type = 'cloudy';
-  }
+  let type = 'cloudy'; // default fallback
   
-  return isDay ? `${base}${type}-day${ext}` : `${base}${type}-night${ext}`;
+  if (weatherType === 'sunny') type = 'sunny';
+  else if (weatherType === 'cloudy') type = 'cloudy';
+  else if (weatherType === 'rain') type = 'rain';
+  else if (weatherType === 'storm') type = 'storm';
+  else if (weatherType === 'snow') type = 'snow';
+  else if (weatherType === 'fog') type = 'fog';
+  
+  return `${base}${type}-${isDay ? 'day' : 'night'}${ext}`;
 }
 
 function WeatherCard({ weather }) {

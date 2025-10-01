@@ -29,17 +29,19 @@ function ItemModal({ item, isOpen, onClose, onDelete }) {
                 className="item-details__image"
               />
               <div className="item-details__info">
-                <h3 className="item-details__name">{item.name}</h3>
+                <div className="item-details__name-row">
+                  <h3 className="item-details__name">{item.name}</h3>
+                  <button 
+                    className="item-details__delete-btn" 
+                    onClick={handleDelete}
+                    aria-label="Delete item"
+                  >
+                    Delete item
+                  </button>
+                </div>
                 <p className="item-details__weather">
                   Weather: {item.weather || 'unknown'}
                 </p>
-                <button 
-                  className="item-details__delete-btn" 
-                  onClick={handleDelete}
-                  aria-label="Delete item"
-                >
-                  Delete item
-                </button>
               </div>
             </>
           ) : (

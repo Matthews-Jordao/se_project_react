@@ -8,8 +8,7 @@ function processServerResponse(res) {
 }
 
 export function getItems() {
-  return fetch(`${baseUrl}/items`)
-    .then(processServerResponse);
+  return fetch(`${baseUrl}/items`).then(processServerResponse);
 }
 
 export function addItem(item) {
@@ -19,7 +18,7 @@ export function addItem(item) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      _id: Date.now().toString(),
+      _id: Date.now().toString(), // simple ID generation for now
       name: item.name,
       weather: item.weather,
       imageUrl: item.link || item.imageUrl,

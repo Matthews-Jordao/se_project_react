@@ -7,7 +7,6 @@ import CurrentTemperatureUnitContext from '../../../../contexts/CurrentTemperatu
 function Main({ clothingItems, onItemClick, weather }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   
-  // Get current weather condition for filtering
   const temp = weather?.temperature?.F;
   const weatherCondition = typeof temp === 'number' ? getWeatherCondition(temp) : null;
   const filteredItems = clothingItems?.filter(item => item.weather === weatherCondition);
