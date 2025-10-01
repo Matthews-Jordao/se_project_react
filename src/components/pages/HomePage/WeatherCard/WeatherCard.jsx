@@ -3,20 +3,53 @@ import React, { useContext } from 'react';
 import './WeatherCard.css';
 import CurrentTemperatureUnitContext from '../../../../contexts/CurrentTemperatureUnitContext.js';
 
+// Import all weather background SVGs
+import weatherCloudyDay from '../../../../assets/weather-backgrounds/weather-cloudy-day.svg';
+import weatherCloudyNight from '../../../../assets/weather-backgrounds/weather-cloudy-night.svg';
+import weatherFogDay from '../../../../assets/weather-backgrounds/weather-fog-day.svg';
+import weatherFogNight from '../../../../assets/weather-backgrounds/weather-fog-night.svg';
+import weatherRainDay from '../../../../assets/weather-backgrounds/weather-rain-day.svg';
+import weatherRainNight from '../../../../assets/weather-backgrounds/weather-rain-night.svg';
+import weatherSnowDay from '../../../../assets/weather-backgrounds/weather-snow-day.svg';
+import weatherSnowNight from '../../../../assets/weather-backgrounds/weather-snow-night.svg';
+import weatherStormDay from '../../../../assets/weather-backgrounds/weather-storm-day.svg';
+import weatherStormNight from '../../../../assets/weather-backgrounds/weather-storm-night.svg';
+import weatherSunnyDay from '../../../../assets/weather-backgrounds/weather-sunny-day.svg';
+import weatherSunnyNight from '../../../../assets/weather-backgrounds/weather-sunny-night.svg';
+
+// Create a mapping object for weather backgrounds
+const weatherBackgrounds = {
+  sunny: {
+    day: weatherSunnyDay,
+    night: weatherSunnyNight,
+  },
+  cloudy: {
+    day: weatherCloudyDay,
+    night: weatherCloudyNight,
+  },
+  rain: {
+    day: weatherRainDay,
+    night: weatherRainNight,
+  },
+  storm: {
+    day: weatherStormDay,
+    night: weatherStormNight,
+  },
+  snow: {
+    day: weatherSnowDay,
+    night: weatherSnowNight,
+  },
+  fog: {
+    day: weatherFogDay,
+    night: weatherFogNight,
+  },
+};
+
 function getWeatherBackground(weatherType, isDay) {
-  const base = '/src/assets/weather-backgrounds/weather-';
-  const ext = '.svg';
+  const timeOfDay = isDay ? 'day' : 'night';
+  const defaultBackground = weatherBackgrounds.cloudy[timeOfDay]; // fallback
   
-  let type = 'cloudy'; // default fallback
-  
-  if (weatherType === 'sunny') type = 'sunny';
-  else if (weatherType === 'cloudy') type = 'cloudy';
-  else if (weatherType === 'rain') type = 'rain';
-  else if (weatherType === 'storm') type = 'storm';
-  else if (weatherType === 'snow') type = 'snow';
-  else if (weatherType === 'fog') type = 'fog';
-  
-  return `${base}${type}-${isDay ? 'day' : 'night'}${ext}`;
+  return weatherBackgrounds[weatherType]?.[timeOfDay] || defaultBackground;
 }
 
 function WeatherCard({ weather }) {

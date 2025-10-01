@@ -7,9 +7,6 @@ import Header from '../common/Header/Header.jsx';
 import Footer from '../common/Footer/Footer.jsx';
 import Main from '../pages/HomePage/Main/Main.jsx';
 import Profile from '../pages/ProfilePage/Profile/Profile.jsx';
-import SideBar from '../pages/ProfilePage/SideBar/SideBar.jsx';
-import ClothesSection from '../pages/ProfilePage/ClothesSection/ClothesSection.jsx';
-import AddGarmentModal from '../modals/AddGarmentModal/AddGarmentModal.jsx';
 import AddItemModal from '../modals/AddItemModal/AddItemModal.jsx';
 import ItemModal from '../modals/ItemModal/ItemModal.jsx';
 import DeleteConfirmationModal from '../modals/DeleteConfirmationModal/DeleteConfirmationModal.jsx';
@@ -26,7 +23,7 @@ function App() {
   // Modal states
   const [activeModal, setActiveModal] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
-  const [isAddGarmentOpen, setIsAddGarmentOpen] = useState(false);
+  const [isAddItemOpen, setIsAddItemOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
 
@@ -40,14 +37,14 @@ function App() {
     setActiveModal('item');
   };
 
-  const handleOpenAddGarment = () => {
-    setIsAddGarmentOpen(true);
+  const handleOpenAddItem = () => {
+    setIsAddItemOpen(true);
   };
 
   const handleCloseModal = () => {
     setActiveModal('');
     setSelectedItem(null);
-    setIsAddGarmentOpen(false);
+    setIsAddItemOpen(false);
     setIsDeleteModalOpen(false);
     setItemToDelete(null);
   };
@@ -65,7 +62,7 @@ function App() {
       .then((savedItem) => {
         setClothingItems(prev => [savedItem, ...prev]);
         resetForm();
-        setIsAddGarmentOpen(false);
+        setIsAddItemOpen(false);
       })
       .catch(console.error);
   };
@@ -105,11 +102,11 @@ function App() {
       if (e.key === 'Escape') handleCloseModal();
     };
     
-    if (activeModal || isAddGarmentOpen || isDeleteModalOpen) {
+    if (activeModal || isAddItemOpen || isDeleteModalOpen) {
       document.addEventListener('keydown', handleEsc);
       return () => document.removeEventListener('keydown', handleEsc);
     }
-  }, [activeModal, isAddGarmentOpen, isDeleteModalOpen]);
+  }, [activeModal, isAddItemOpen, isDeleteModalOpen]);
 
   return (
     <div className="page">
@@ -123,7 +120,7 @@ function App() {
               element={
                 <div className="app-wrapper">
                   <div className="home-page">
-                    <Header onAddClothes={handleOpenAddGarment} city={weather?.city} />
+                    <Header onAddClothes={handleOpenAddItem} city={weather?.city} />
                     <Main clothingItems={clothingItems} onItemClick={handleOpenItemModal} weather={weather} />
                     <Footer />
                   </div>
@@ -135,7 +132,7 @@ function App() {
               element={
                 <div className="app-wrapper">
                   <div className="home-page">
-                    <Header onAddClothes={handleOpenAddGarment} city={weather?.city} />
+                    <Header onAddClothes={handleOpenAddItem} city={weather?.city} />
                     <Main clothingItems={clothingItems} onItemClick={handleOpenItemModal} weather={weather} />
                     <Footer />
                   </div>
@@ -147,19 +144,12 @@ function App() {
               element={
                 <div className="app-wrapper">
                   <div className="profile-page">
-                    <Header onAddClothes={handleOpenAddGarment} city={weather?.city} />
-                    <div className="profile">
-                      <section className="profile__sidebar">
-                        <SideBar />
-                      </section>
-                      <section className="profile__clothing-section">
-                        <ClothesSection 
-                          clothingItems={clothingItems}
-                          onItemClick={handleOpenItemModal}
-                          onAddClothes={handleOpenAddGarment}
-                        />
-                      </section>
-                    </div>
+                    <Header onAddClothes={handleOpenAddItem} city={weather?.city} />
+                    <Profile 
+                      clothingItems={clothingItems}
+                      onItemClick={handleOpenItemModal}
+                      onAddClothes={handleOpenAddItem}
+                    />
                     <Footer />
                   </div>
                 </div>
@@ -176,7 +166,7 @@ function App() {
           />
           {/* Add Item Modal */}
           <AddItemModal
-            isOpen={isAddGarmentOpen}
+            isOpen={isAddItemOpen}
             onCloseModal={handleCloseModal}
             onAddItem={handleAddItem}
           />

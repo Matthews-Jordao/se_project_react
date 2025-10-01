@@ -5,10 +5,10 @@ import './AddGarmentModal.css';
 
 function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
   const [name, setName] = useState('');
-  const [link, setLink] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [weather, setWeather] = useState('');
 
-  const isValidImageLink = /^https?:\/\/.+\.(jpg|jpeg|png|gif|svg)$/.test(link.trim());
+  const isValidImageLink = /^https?:\/\/.+\.(jpg|jpeg|png|gif|svg)$/.test(imageUrl.trim());
   const isFormValid = name.trim() && isValidImageLink && weather;
 
   function handleSubmit(e) {
@@ -18,13 +18,13 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
     const newGarment = {
       _id: Date.now().toString(),
       name,
-      link,
+      link: imageUrl,
       weather,
     };
     
     onAddGarment(newGarment);
     setName('');
-    setLink('');
+    setImageUrl('');
     setWeather('');
     onClose();
   }
@@ -63,8 +63,8 @@ function AddGarmentModal({ isOpen, onClose, onAddGarment }) {
           className="modal__input"
           id="garment-link"
           type="url"
-          value={link}
-          onChange={e => setLink(e.target.value)}
+          value={imageUrl}
+          onChange={e => setImageUrl(e.target.value)}
           placeholder="Image URL"
           required
         />

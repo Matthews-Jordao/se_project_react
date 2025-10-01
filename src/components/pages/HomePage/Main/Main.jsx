@@ -27,7 +27,7 @@ function Main({ clothingItems, onItemClick, weather }) {
           <ItemCard key={item._id} item={item} onClick={onItemClick || (() => {})} />
         ))
       ) : (
-        <div style={{ width: '100%', textAlign: 'center', marginTop: '24px', color: '#888' }}>
+        <div className="main__empty-state">
           No clothing items match the current weather.
         </div>
       )}

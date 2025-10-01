@@ -85,14 +85,6 @@
   border-bottom-right-radius: 0;
   align-self: center;
 }
-.item-details__name {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  font-style: bold;
-  line-height: 24px;
-  letter-spacing: 0;
-}
 .item-details__weather {
   margin: 0;
   font-size: 20px;

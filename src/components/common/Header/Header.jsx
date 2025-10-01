@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch.jsx';
+import Logo from '../../../assets/Logo.svg';
 
 function Header({ onAddClothes, city }) {
   const now = new Date();
@@ -14,7 +15,7 @@ function Header({ onAddClothes, city }) {
     <header className="header">
       <div className="header__left">
         <Link to="/">
-          <img src="/src/assets/Logo.svg" alt="App Logo" className="header__logo" />
+          <img src={Logo} alt="App Logo" className="header__logo" />
         </Link>
         <span className="header__date-location">{date}, {location}</span>
       </div>
