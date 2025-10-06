@@ -1,6 +1,6 @@
 import './App.css';
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Header from '../common/Header/Header.jsx';
@@ -49,28 +49,11 @@ function App() {
     setItemToDelete(null);
   };
 
-  const handleAddGarment = (newGarment) => {
-    addItem(newGarment)
-      .then((savedItem) => {
-        setClothingItems(prev => [savedItem, ...prev]);
-      })
-      .catch(console.error);
-  };
-
   const handleAddItem = (newItem, resetForm) => {
     addItem(newItem)
       .then((savedItem) => {
         setClothingItems(prev => [savedItem, ...prev]);
         resetForm();
-        setIsAddItemOpen(false);
-      })
-      .catch(console.error);
-  };
-
-  const handleCardDelete = (cardToDelete) => {
-    deleteItem(cardToDelete._id)
-      .then(() => {
-        setClothingItems(prev => prev.filter(item => item._id !== cardToDelete._id));
         handleCloseModal();
       })
       .catch(console.error);
@@ -128,18 +111,6 @@ function App() {
               } 
             />
             <Route 
-              path="/home" 
-              element={
-                <div className="app-wrapper">
-                  <div className="home-page">
-                    <Header onAddClothes={handleOpenAddItem} city={weather?.city} />
-                    <Main clothingItems={clothingItems} onItemClick={handleOpenItemModal} weather={weather} />
-                    <Footer />
-                  </div>
-                </div>
-              } 
-            />
-            <Route 
               path="/profile" 
               element={
                 <div className="app-wrapper">
@@ -157,20 +128,17 @@ function App() {
             />
           </Routes>
             
-          {/* Modal for item details */}
           <ItemModal
             item={selectedItem}
             isOpen={activeModal === 'item'}
             onClose={handleCloseModal}
             onDelete={handleOpenDeleteModal}
           />
-          {/* Add Item Modal */}
           <AddItemModal
             isOpen={isAddItemOpen}
             onCloseModal={handleCloseModal}
             onAddItem={handleAddItem}
           />
-          {/* Delete Confirmation Modal */}
           <DeleteConfirmationModal
             isOpen={isDeleteModalOpen}
             onClose={handleCloseModal}
