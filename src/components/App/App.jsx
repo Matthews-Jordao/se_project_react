@@ -232,24 +232,43 @@ function AppContent() {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <div className="app-wrapper">
-            <div className="home-page">
-              <Header
-                onAddClothes={handleOpenAddItem}
-                city={weather?.city}
-                isLoggedIn={isLoggedIn}
-                onRegisterClick={handleOpenRegisterModal}
-                onLoginClick={handleOpenLoginModal}
-                onLogout={handleLogout}
+            <Header
+              onAddClothes={handleOpenAddItem}
+              city={weather?.city}
+              isLoggedIn={isLoggedIn}
+              onRegisterClick={handleOpenRegisterModal}
+              onLoginClick={handleOpenLoginModal}
+              onLogout={handleLogout}
+            />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    clothingItems={clothingItems}
+                    onItemClick={handleOpenItemModal}
+                    weather={weather}
+                    onCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
+                  />
+                }
               />
-              <Main
-                clothingItems={clothingItems}
-                onItemClick={handleOpenItemModal}
-                weather={weather}
-                onCardLike={handleCardLike}
-                isLoggedIn={isLoggedIn}
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Profile
+                      clothingItems={clothingItems}
+                      onItemClick={handleOpenItemModal}
+                      onAddItem={handleOpenAddItem}
+                      onCardLike={handleCardLike}
+                      onEditProfile={() => setIsEditProfileModalOpen(true)}
+                    />
+                  </ProtectedRoute>
+                }
               />
-              <Footer />
-            </div>
+            </Routes>
+            <Footer />
           </div>
 
           <ItemModal
