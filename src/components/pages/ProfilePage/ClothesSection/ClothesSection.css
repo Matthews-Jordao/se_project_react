@@ -57,12 +57,12 @@
     align-items: flex-start;
     gap: 12px;
   }
-  
+
   .clothes-section__items {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 16px;
   }
-  
+
   .clothes-section__title,
   .clothes-section__add-button {
     font-size: 18px;

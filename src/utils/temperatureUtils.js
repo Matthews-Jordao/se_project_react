@@ -29,10 +29,10 @@ export function celsiusToFahrenheit(celsius) {
  */
 export function formatTemperature(temperature, isCelsius = false) {
   if (typeof temperature !== 'number') return '--';
-  
+
   const temp = isCelsius ? fahrenheitToCelsius(temperature) : temperature;
   const unit = isCelsius ? '°C' : '°F';
-  
+
   return `${Math.round(temp)}${unit}`;
 }
 
@@ -43,24 +43,24 @@ export function formatTemperature(temperature, isCelsius = false) {
  * @returns {string} - Weather condition: "hot", "warm", "cold", or "unknown"
  */
 export function getWeatherConditionWithUnit(tempF, isCelsius = false) {
-  if (typeof tempF !== "number") return "unknown";
-  
+  if (typeof tempF !== 'number') return 'unknown';
+
   // Convert thresholds if user prefers Celsius
-  let hotThreshold = 86;  // 86°F = 30°C
+  let hotThreshold = 86; // 86°F = 30°C
   let warmThreshold = 66; // 66°F = 19°C
-  
+
   if (isCelsius) {
     const tempC = fahrenheitToCelsius(tempF);
-    hotThreshold = 30;   // 30°C
-    warmThreshold = 19;  // 19°C
-    
-    if (tempC >= hotThreshold) return "hot";
-    if (tempC >= warmThreshold) return "warm";
-    return "cold";
+    hotThreshold = 30; // 30°C
+    warmThreshold = 19; // 19°C
+
+    if (tempC >= hotThreshold) return 'hot';
+    if (tempC >= warmThreshold) return 'warm';
+    return 'cold';
   }
-  
+
   // Use Fahrenheit thresholds
-  if (tempF >= hotThreshold) return "hot";
-  if (tempF >= warmThreshold) return "warm";
-  return "cold";
+  if (tempF >= hotThreshold) return 'hot';
+  if (tempF >= warmThreshold) return 'warm';
+  return 'cold';
 }

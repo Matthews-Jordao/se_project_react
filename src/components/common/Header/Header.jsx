@@ -5,7 +5,13 @@ import ToggleSwitch from '../ToggleSwitch/ToggleSwitch.jsx';
 import Logo from '../../../assets/Logo.svg';
 import CurrentUserContext from '../../../contexts/CurrentUserContext.js';
 
-function Header({ onAddClothes, city, isLoggedIn, onRegisterClick, onLoginClick }) {
+function Header({
+  onAddClothes,
+  city,
+  isLoggedIn,
+  onRegisterClick,
+  onLoginClick,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const now = new Date();
   const date = now.toLocaleString('en-US', { month: 'long', day: 'numeric' });
@@ -21,29 +27,35 @@ function Header({ onAddClothes, city, isLoggedIn, onRegisterClick, onLoginClick 
         <Link to="/">
           <img src={Logo} alt="App Logo" className="header__logo" />
         </Link>
-        <span className="header__date-location">{date}, {location}</span>
+        <span className="header__date-location">
+          {date}, {location}
+        </span>
       </div>
-      
+
       <div className="header__right">
         <ToggleSwitch />
-        
+
         {isLoggedIn ? (
           <>
-            <button className="header__add-clothes" title="Add new clothing item" onClick={onAddClothes}>
+            <button
+              className="header__add-clothes"
+              title="Add new clothing item"
+              onClick={onAddClothes}
+            >
               + Add clothes
             </button>
             <Link to="/profile" className="header__profile-link">
-              <span className="header__user-name" title="User Name">{currentUser?.name}</span>
+              <span className="header__user-name" title="User Name">
+                {currentUser?.name}
+              </span>
               {currentUser?.avatar ? (
-                <img 
-                  src={currentUser.avatar} 
-                  alt="User Avatar" 
-                  className="header__profile-photo" 
+                <img
+                  src={currentUser.avatar}
+                  alt="User Avatar"
+                  className="header__profile-photo"
                 />
               ) : (
-                <div className="header__avatar-placeholder">
-                  {getInitial()}
-                </div>
+                <div className="header__avatar-placeholder">{getInitial()}</div>
               )}
             </Link>
           </>

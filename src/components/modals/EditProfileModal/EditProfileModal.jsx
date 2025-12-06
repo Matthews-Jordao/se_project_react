@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ModalWithForm from '../../common/ModalWithForm/ModalWithForm.jsx';
 import { useForm } from '../../../hooks/useForm.js';
 
-const EditProfileModal = ({ isOpen, currentUser, onEditProfile, onCloseModal }) => {
-  const { values, handleChange, resetForm } = useForm({
-    name: currentUser?.name || '',
-    avatar: currentUser?.avatar || ''
+const EditProfileModal = ({
+  isOpen,
+  currentUser,
+  onEditProfile,
+  onCloseModal,
+}) => {
+  const { values, handleChange, resetForm, setValues } = useForm({
+    name: '',
+    avatar: '',
   });
+
+  useEffect(() => {
+    if (isOpen && currentUser) {
+      setValues({
+        name: currentUser.name || '',
+        avatar: currentUser.avatar || '',
+      });
+    }
+  }, [isOpen, currentUser, setValues]);
 
   const isFormValid = values.name?.trim() && values.avatar?.trim();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormValid) return;
-    
-    onEditProfile({
-      name: values.name,
-      avatar: values.avatar
-    }, resetForm);
+
+    onEditProfile(
+      {
+        name: values.name,
+        avatar: values.avatar,
+      },
+      resetForm
+    );
   };
 
   return (
@@ -31,7 +48,9 @@ const EditProfileModal = ({ isOpen, currentUser, onEditProfile, onCloseModal }) 
       disabled={!isFormValid}
     >
       <div className="modal__input-group">
-        <label className="modal__label" htmlFor="profile-name">Name*</label>
+        <label className="modal__label" htmlFor="profile-name">
+          Name*
+        </label>
         <input
           className="modal__input"
           id="profile-name"
@@ -43,9 +62,11 @@ const EditProfileModal = ({ isOpen, currentUser, onEditProfile, onCloseModal }) 
           required
         />
       </div>
-      
+
       <div className="modal__input-group">
-        <label className="modal__label" htmlFor="profile-avatar">Avatar URL*</label>
+        <label className="modal__label" htmlFor="profile-avatar">
+          Avatar URL*
+        </label>
         <input
           className="modal__input"
           id="profile-avatar"

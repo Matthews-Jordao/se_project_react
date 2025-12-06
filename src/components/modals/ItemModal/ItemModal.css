@@ -19,7 +19,6 @@
   margin: 0;
   font-size: 20px;
   font-weight: 700;
-  font-style: bold;
   line-height: 24px;
   letter-spacing: 0;
   flex-shrink: 0;
@@ -36,19 +35,18 @@
   justify-content: center;
   z-index: 1000;
 }
- .item-modal__content {
+.item-modal__content {
   background: #fff;
   border-radius: 16px;
   width: 498px;
   height: 610px;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   font-family: 'Cabinet Grotesk', sans-serif;
   font-weight: 700;
-  font-style: bold;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0;
@@ -89,7 +87,6 @@
   margin: 0;
   font-size: 20px;
   font-weight: 700;
-  font-style: bold;
   line-height: 24px;
   letter-spacing: 0;
   color: #555;

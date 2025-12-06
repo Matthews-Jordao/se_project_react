@@ -24,7 +24,7 @@
   height: 24px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 20px;
-  border: 2px solid #7E7E7E;
+  border: 2px solid #7e7e7e;
   position: relative;
 }
 
@@ -47,7 +47,7 @@
 
 .temperature-toggle__option_fahrenheit {
   left: -2px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .temperature-toggle__option_celsius {
@@ -69,16 +69,22 @@
 }
 
 /* Toggle states */
-.temperature-toggle__input:checked + .temperature-toggle__track .temperature-toggle__selector {
+.temperature-toggle__input:checked
+  + .temperature-toggle__track
+  .temperature-toggle__selector {
   transform: translateX(28px);
 }
 
-.temperature-toggle__input:checked + .temperature-toggle__track .temperature-toggle__option_fahrenheit {
+.temperature-toggle__input:checked
+  + .temperature-toggle__track
+  .temperature-toggle__option_fahrenheit {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.temperature-toggle__input:checked + .temperature-toggle__track .temperature-toggle__option_celsius {
-  color: #FFFFFF;
+.temperature-toggle__input:checked
+  + .temperature-toggle__track
+  .temperature-toggle__option_celsius {
+  color: #ffffff;
 }
 
 /* Hover effects */
@@ -87,17 +93,21 @@
 }
 
 .temperature-toggle__container:hover .temperature-toggle__option_fahrenheit {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .temperature-toggle__container:hover .temperature-toggle__option_celsius {
   color: rgba(0, 0, 0, 1);
 }
 
-.temperature-toggle__input:checked + .temperature-toggle__track:hover .temperature-toggle__option_fahrenheit {
+.temperature-toggle__input:checked
+  + .temperature-toggle__track:hover
+  .temperature-toggle__option_fahrenheit {
   color: rgba(0, 0, 0, 1);
 }
 
-.temperature-toggle__input:checked + .temperature-toggle__track:hover .temperature-toggle__option_celsius {
-  color: #FFFFFF;
+.temperature-toggle__input:checked
+  + .temperature-toggle__track:hover
+  .temperature-toggle__option_celsius {
+  color: #ffffff;
 }

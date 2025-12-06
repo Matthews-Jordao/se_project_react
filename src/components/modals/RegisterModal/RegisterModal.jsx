@@ -7,33 +7,33 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal, onLoginClick }) => {
     email: '',
     password: '',
     name: '',
-    avatar: ''
+    avatar: '',
   });
 
-  const isFormValid = values.email?.trim() && 
-                      values.password?.trim() && 
-                      values.name?.trim() && 
-                      values.avatar?.trim();
+  const isFormValid =
+    values.email?.trim() &&
+    values.password?.trim() &&
+    values.name?.trim() &&
+    values.avatar?.trim();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormValid) return;
-    
-    onRegister({
-      email: values.email,
-      password: values.password,
-      name: values.name,
-      avatar: values.avatar
-    }, resetForm);
+
+    onRegister(
+      {
+        email: values.email,
+        password: values.password,
+        name: values.name,
+        avatar: values.avatar,
+      },
+      resetForm
+    );
   };
 
   const footerContent = (
     <div className="modal__redirect">
-      <button
-        type="submit"
-        className="modal__submit"
-        disabled={!isFormValid}
-      >
+      <button type="submit" className="modal__submit" disabled={!isFormValid}>
         Sign up
       </button>
       <button
@@ -56,7 +56,9 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal, onLoginClick }) => {
       footerContent={footerContent}
     >
       <div className="modal__input-group">
-        <label className="modal__label" htmlFor="register-email">Email*</label>
+        <label className="modal__label" htmlFor="register-email">
+          Email*
+        </label>
         <input
           className="modal__input"
           id="register-email"
@@ -68,9 +70,11 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal, onLoginClick }) => {
           required
         />
       </div>
-      
+
       <div className="modal__input-group">
-        <label className="modal__label" htmlFor="register-password">Password*</label>
+        <label className="modal__label" htmlFor="register-password">
+          Password*
+        </label>
         <input
           className="modal__input"
           id="register-password"
@@ -84,7 +88,9 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal, onLoginClick }) => {
       </div>
 
       <div className="modal__input-group">
-        <label className="modal__label" htmlFor="register-name">Name*</label>
+        <label className="modal__label" htmlFor="register-name">
+          Name*
+        </label>
         <input
           className="modal__input"
           id="register-name"
@@ -96,9 +102,11 @@ const RegisterModal = ({ isOpen, onRegister, onCloseModal, onLoginClick }) => {
           required
         />
       </div>
-      
+
       <div className="modal__input-group">
-        <label className="modal__label" htmlFor="register-avatar">Avatar URL*</label>
+        <label className="modal__label" htmlFor="register-avatar">
+          Avatar URL*
+        </label>
         <input
           className="modal__input"
           id="register-avatar"

@@ -13,7 +13,7 @@ function ItemCard({ item, onClick, onCardLike, isLoggedIn }) {
   const handleLike = () => {
     onCardLike({ _id: item._id, isLiked });
   };
-  
+
   return (
     <div
       className="item-card"
@@ -26,10 +26,12 @@ function ItemCard({ item, onClick, onCardLike, isLoggedIn }) {
     >
       <div className="item-card__header">
         <div className="item-card__name-wrapper">
-          <span className="item-card__name">{item?.name || 'Unnamed Item'}</span>
+          <span className="item-card__name">
+            {item?.name || 'Unnamed Item'}
+          </span>
         </div>
         {isLoggedIn && (
-          <button 
+          <button
             className={likeButtonClass}
             onClick={(e) => {
               e.stopPropagation();
@@ -37,9 +39,9 @@ function ItemCard({ item, onClick, onCardLike, isLoggedIn }) {
             }}
             aria-label={isLiked ? 'Unlike item' : 'Like item'}
           >
-            <img 
-              src={isLiked ? likedIcon : likeIcon} 
-              alt="Like" 
+            <img
+              src={isLiked ? likedIcon : likeIcon}
+              alt="Like"
               className="item-card__like-icon"
             />
           </button>

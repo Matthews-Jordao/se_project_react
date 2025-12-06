@@ -38,7 +38,12 @@ function ModalWithForm({
       role="dialog"
     >
       <div className="modal__content">
-        <button className="modal__close" type="button" aria-label="Close" onClick={onClose}>
+        <button
+          className="modal__close"
+          type="button"
+          aria-label="Close"
+          onClick={onClose}
+        >
           &#10005;
         </button>
         <h2 className="modal__title">{title}</h2>
@@ -56,4 +61,3 @@ function ModalWithForm({
 }
 
 export default ModalWithForm;
-

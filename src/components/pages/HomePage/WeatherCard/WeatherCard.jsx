@@ -1,4 +1,3 @@
-
 import React, { useContext } from 'react';
 import './WeatherCard.css';
 import CurrentTemperatureUnitContext from '../../../../contexts/CurrentTemperatureUnitContext.js';
@@ -46,25 +45,29 @@ const weatherBackgrounds = {
 function getWeatherBackground(weatherType, isDay) {
   const timeOfDay = isDay ? 'day' : 'night';
   const defaultBackground = weatherBackgrounds.cloudy[timeOfDay];
-  
+
   return weatherBackgrounds[weatherType]?.[timeOfDay] || defaultBackground;
 }
 
 function WeatherCard({ weather }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  
+
   if (!weather) return null;
-  
+
   const bgImage = getWeatherBackground(weather.weatherType, weather.isDay);
-  
+
   return (
     <div
       className="weather-card"
-      style={{ background: `url('${bgImage}') right center/cover no-repeat, rgba(255,255,255,0)` }}
+      style={{
+        background: `url('${bgImage}') right center/cover no-repeat, rgba(255,255,255,0)`,
+      }}
       aria-label="Weather Card"
     >
       <div className="weather-card__temp" aria-label="Temperature">
-        {weather.temperature ? `${weather.temperature[currentTemperatureUnit]}°${currentTemperatureUnit}` : '--'}
+        {weather.temperature
+          ? `${weather.temperature[currentTemperatureUnit]}°${currentTemperatureUnit}`
+          : '--'}
       </div>
     </div>
   );

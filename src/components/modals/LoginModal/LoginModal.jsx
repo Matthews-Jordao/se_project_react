@@ -5,7 +5,7 @@ import { useForm } from '../../../hooks/useForm.js';
 const LoginModal = ({ isOpen, onLogin, onCloseModal, onRegisterClick }) => {
   const { values, handleChange, resetForm } = useForm({
     email: '',
-    password: ''
+    password: '',
   });
 
   const isFormValid = values.email?.trim() && values.password?.trim();
@@ -13,24 +13,23 @@ const LoginModal = ({ isOpen, onLogin, onCloseModal, onRegisterClick }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormValid) return;
-    
-    onLogin({
-      email: values.email,
-      password: values.password
-    }, resetForm);
+
+    onLogin(
+      {
+        email: values.email,
+        password: values.password,
+      },
+      resetForm
+    );
   };
 
   const footerContent = (
     <div className="modal__redirect">
-      <button
-        type="submit"
-        className="modal__submit"
-        disabled={!isFormValid}
-      >
+      <button type="submit" className="modal__submit" disabled={!isFormValid}>
         Log in
       </button>
       <button
-        type="button" 
+        type="button"
         className="modal__redirect-btn"
         onClick={onRegisterClick}
       >
@@ -49,7 +48,9 @@ const LoginModal = ({ isOpen, onLogin, onCloseModal, onRegisterClick }) => {
       footerContent={footerContent}
     >
       <div className="modal__input-group">
-        <label className="modal__label" htmlFor="login-email">Email*</label>
+        <label className="modal__label" htmlFor="login-email">
+          Email*
+        </label>
         <input
           className="modal__input"
           id="login-email"
@@ -61,9 +62,11 @@ const LoginModal = ({ isOpen, onLogin, onCloseModal, onRegisterClick }) => {
           required
         />
       </div>
-      
+
       <div className="modal__input-group">
-        <label className="modal__label" htmlFor="login-password">Password*</label>
+        <label className="modal__label" htmlFor="login-password">
+          Password*
+        </label>
         <input
           className="modal__input"
           id="login-password"

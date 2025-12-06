@@ -95,27 +95,27 @@
     align-items: center;
     justify-content: space-between;
   }
-  
+
   .sidebar__user-info {
     flex: 1;
   }
-  
+
   .sidebar__avatar {
     width: 32px;
     height: 32px;
   }
-  
+
   .sidebar__username {
     font-size: 18px;
     line-height: 22px;
   }
-  
+
   .sidebar__buttons {
     flex-direction: row;
     gap: 8px;
     width: auto;
   }
-  
+
   .sidebar__btn {
     width: auto;
     height: auto;

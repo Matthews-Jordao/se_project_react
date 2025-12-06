@@ -5,7 +5,7 @@ export function useForm(inputValues = {}) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setValues(prev => ({ ...prev, [name]: value }));
+    setValues((prev) => ({ ...prev, [name]: value }));
   };
 
   const resetForm = () => {

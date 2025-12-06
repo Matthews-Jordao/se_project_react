@@ -51,7 +51,7 @@
   .header__right {
     gap: 16px;
   }
-  
+
   .header__date-location {
     margin-left: 16px;
     font-size: 18px;
@@ -63,16 +63,16 @@
     gap: 12px;
     margin-bottom: 20px;
   }
-  
+
   .header__right {
     gap: 12px;
   }
-  
+
   .header__date-location {
     margin-left: 12px;
     font-size: 16px;
   }
-  
+
   .header__logo {
     width: 70px;
     height: 32px;

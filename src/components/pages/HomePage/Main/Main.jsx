@@ -7,26 +7,30 @@ import CurrentTemperatureUnitContext from '../../../../contexts/CurrentTemperatu
 
 function Main({ clothingItems, onItemClick, weather, onCardLike, isLoggedIn }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  
+
   const temp = weather?.temperature?.F;
-  const weatherCondition = typeof temp === 'number' ? getWeatherCondition(temp) : null;
-  const filteredItems = clothingItems?.filter(item => item.weather === weatherCondition);
-  
+  const weatherCondition =
+    typeof temp === 'number' ? getWeatherCondition(temp) : null;
+  const filteredItems = clothingItems?.filter(
+    (item) => item.weather === weatherCondition
+  );
+
   return (
     <main className="main">
       <WeatherCard weather={weather} />
-      
+
       {weather?.temperature && (
         <div className="main__title">
-          Today is {weather.temperature[currentTemperatureUnit]}°{currentTemperatureUnit} / You may want to wear:
+          Today is {weather.temperature[currentTemperatureUnit]}°
+          {currentTemperatureUnit} / You may want to wear:
         </div>
       )}
-      
+
       {filteredItems && filteredItems.length > 0 ? (
-        filteredItems.map(item => (
-          <ItemCard 
-            key={item._id} 
-            item={item} 
+        filteredItems.map((item) => (
+          <ItemCard
+            key={item._id}
+            item={item}
             onClick={onItemClick || (() => {})}
             onCardLike={onCardLike}
             isLoggedIn={isLoggedIn}

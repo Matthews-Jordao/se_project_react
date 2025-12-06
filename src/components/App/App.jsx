@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Header from '../common/Header/Header.jsx';
 import Footer from '../common/Footer/Footer.jsx';
 import Main from '../pages/HomePage/Main/Main.jsx';
@@ -13,13 +13,20 @@ import RegisterModal from '../modals/RegisterModal/RegisterModal.jsx';
 import LoginModal from '../modals/LoginModal/LoginModal.jsx';
 import EditProfileModal from '../modals/EditProfileModal/EditProfileModal.jsx';
 import { fetchWeatherData } from '../../utils/weatherApi.js';
-import { getItems, addItem, deleteItem, updateProfile, likeItem, unlikeItem } from '../../utils/api.js';
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  updateProfile,
+  likeItem,
+  unlikeItem,
+} from '../../utils/api.js';
 import { signup, signin, checkToken } from '../../utils/auth.js';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext.js';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 
-
-function App() {
+function AppContent() {
+  const navigate = useNavigate();
   const [clothingItems, setClothingItems] = useState([]);
   const [weather, setWeather] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
@@ -101,6 +108,7 @@ function App() {
         setIsLoggedIn(true);
         resetForm();
         handleCloseModal();
+        navigate('/');
       })
       .catch((err) => {
         console.error('Registration error:', err);
@@ -120,6 +128,7 @@ function App() {
         setIsLoggedIn(true);
         resetForm();
         handleCloseModal();
+        navigate('/');
       })
       .catch((err) => {
         console.error('Login error:', err);
@@ -136,7 +145,7 @@ function App() {
     const token = localStorage.getItem('jwt');
     updateProfile(data, token)
       .then((updatedUser) => {
-        setCurrentUser(updatedUser);
+        setCurrentUser((prev) => ({ ...prev, ...updatedUser }));
         resetForm();
         handleCloseModal();
       })
@@ -149,7 +158,7 @@ function App() {
     const token = localStorage.getItem('jwt');
     addItem(newItem, token)
       .then((savedItem) => {
-        setClothingItems(prev => [savedItem, ...prev]);
+        setClothingItems((prev) => [savedItem, ...prev]);
         resetForm();
         handleCloseModal();
       })
@@ -166,7 +175,9 @@ function App() {
       const token = localStorage.getItem('jwt');
       deleteItem(itemToDelete._id, token)
         .then(() => {
-          setClothingItems(prev => prev.filter(item => item._id !== itemToDelete._id));
+          setClothingItems((prev) =>
+            prev.filter((item) => item._id !== itemToDelete._id)
+          );
           handleCloseModal();
         })
         .catch(console.error);
@@ -193,12 +204,26 @@ function App() {
     const handleEsc = (e) => {
       if (e.key === 'Escape') handleCloseModal();
     };
-    
-    if (activeModal || isAddItemOpen || isDeleteModalOpen || isRegisterModalOpen || isLoginModalOpen || isEditProfileModalOpen) {
+
+    if (
+      activeModal ||
+      isAddItemOpen ||
+      isDeleteModalOpen ||
+      isRegisterModalOpen ||
+      isLoginModalOpen ||
+      isEditProfileModalOpen
+    ) {
       document.addEventListener('keydown', handleEsc);
       return () => document.removeEventListener('keydown', handleEsc);
     }
-  }, [activeModal, isAddItemOpen, isDeleteModalOpen, isRegisterModalOpen, isLoginModalOpen, isEditProfileModalOpen]);
+  }, [
+    activeModal,
+    isAddItemOpen,
+    isDeleteModalOpen,
+    isRegisterModalOpen,
+    isLoginModalOpen,
+    isEditProfileModalOpen,
+  ]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -206,64 +231,27 @@ function App() {
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
-        <BrowserRouter>
-          <Routes>
-            <Route 
-              path="/" 
-              element={
-                <div className="app-wrapper">
-                  <div className="home-page">
-                    <Header 
-                      onAddClothes={handleOpenAddItem} 
-                      city={weather?.city}
-                      isLoggedIn={isLoggedIn}
-                      onRegisterClick={handleOpenRegisterModal}
-                      onLoginClick={handleOpenLoginModal}
-                      onLogout={handleLogout}
-                    />
-                    <Main 
-                      clothingItems={clothingItems} 
-                      onItemClick={handleOpenItemModal} 
-                      weather={weather}
-                      onCardLike={handleCardLike}
-                      isLoggedIn={isLoggedIn}
-                    />
-                    <Footer />
-                  </div>
-                </div>
-              } 
-            />
-            <Route 
-              path="/profile" 
-              element={
-                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <div className="app-wrapper">
-                    <div className="profile-page">
-                      <Header 
-                        onAddClothes={handleOpenAddItem} 
-                        city={weather?.city}
-                        isLoggedIn={isLoggedIn}
-                        onRegisterClick={handleOpenRegisterModal}
-                        onLoginClick={handleOpenLoginModal}
-                        onLogout={handleLogout}
-                      />
-                      <Profile 
-                        clothingItems={clothingItems}
-                        onItemClick={handleOpenItemModal}
-                        onAddClothes={handleOpenAddItem}
-                        onEditClick={() => setIsEditProfileModalOpen(true)}
-                        onLogoutClick={handleLogout}
-                        onCardLike={handleCardLike}
-                        isLoggedIn={isLoggedIn}
-                      />
-                      <Footer />
-                    </div>
-                  </div>
-                </ProtectedRoute>
-              } 
-            />
-          </Routes>
-            
+          <div className="app-wrapper">
+            <div className="home-page">
+              <Header
+                onAddClothes={handleOpenAddItem}
+                city={weather?.city}
+                isLoggedIn={isLoggedIn}
+                onRegisterClick={handleOpenRegisterModal}
+                onLoginClick={handleOpenLoginModal}
+                onLogout={handleLogout}
+              />
+              <Main
+                clothingItems={clothingItems}
+                onItemClick={handleOpenItemModal}
+                weather={weather}
+                onCardLike={handleCardLike}
+                isLoggedIn={isLoggedIn}
+              />
+              <Footer />
+            </div>
+          </div>
+
           <ItemModal
             item={selectedItem}
             isOpen={activeModal === 'item'}
@@ -305,10 +293,17 @@ function App() {
             onEditProfile={handleEditProfile}
             onCloseModal={handleCloseModal}
           />
-        </BrowserRouter>
-      </CurrentTemperatureUnitContext.Provider>
+        </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
 

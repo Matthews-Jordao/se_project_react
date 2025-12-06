@@ -6,31 +6,33 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   const { values, handleChange, resetForm } = useForm({
     name: '',
     imageUrl: '',
-    weather: ''
+    weather: '',
   });
 
-  const isValidImageLink = /^https?:\/\/.+\.(jpg|jpeg|png|gif|svg)$/.test(values.imageUrl?.trim() || '');
+  const isValidImageLink = /^https?:\/\/.+\.(jpg|jpeg|png|gif|svg)$/.test(
+    values.imageUrl?.trim() || ''
+  );
   const isFormValid = values.name?.trim() && isValidImageLink && values.weather;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormValid) return;
-    
+
     const newItem = {
       name: values.name,
       imageUrl: values.imageUrl,
       weather: values.weather,
     };
-    
+
     onAddItem(newItem, resetForm);
   };
 
   const handleWeatherChange = (weatherType) => {
-    handleChange({ 
-      target: { 
-        name: 'weather', 
-        value: weatherType 
-      } 
+    handleChange({
+      target: {
+        name: 'weather',
+        value: weatherType,
+      },
     });
   };
 
@@ -45,7 +47,9 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       disabled={!isFormValid}
     >
       <div className="modal__input-group">
-        <label className="modal__label" htmlFor="item-name">Name</label>
+        <label className="modal__label" htmlFor="item-name">
+          Name
+        </label>
         <input
           className="modal__input"
           id="item-name"
@@ -57,12 +61,16 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           required
         />
       </div>
-      
+
       <div className="modal__input-group">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <label className="modal__label" htmlFor="item-imageUrl">Image</label>
+          <label className="modal__label" htmlFor="item-imageUrl">
+            Image
+          </label>
           {values.imageUrl && !isValidImageLink && (
-            <span className="modal__error">(This is not a valid image link)</span>
+            <span className="modal__error">
+              (This is not a valid image link)
+            </span>
           )}
         </div>
         <input
@@ -76,11 +84,11 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           required
         />
       </div>
-      
+
       <div className="modal__weather-group">
         <div className="modal__label">Select the weather type:</div>
         <div className="modal__weather-options">
-          {['hot', 'warm', 'cold'].map(type => (
+          {['hot', 'warm', 'cold'].map((type) => (
             <div key={type} className="modal__weather-row">
               <button
                 type="button"
@@ -88,7 +96,9 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
                 onClick={() => handleWeatherChange(type)}
                 aria-label={type}
               />
-              <span className="modal__weather-text">{type.charAt(0).toUpperCase() + type.slice(1)}</span>
+              <span className="modal__weather-text">
+                {type.charAt(0).toUpperCase() + type.slice(1)}
+              </span>
             </div>
           ))}
         </div>

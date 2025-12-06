@@ -7,7 +7,7 @@ function ItemModal({ item, isOpen, onClose, onDelete }) {
   if (!isOpen) return null;
 
   const isOwn = item?.owner === currentUser?._id;
-  
+
   function handleOverlayClick(e) {
     if (e.target.classList.contains('item-modal')) {
       onClose();
@@ -21,9 +21,18 @@ function ItemModal({ item, isOpen, onClose, onDelete }) {
   };
 
   return (
-    <div className="item-modal" onClick={handleOverlayClick} aria-modal="true" role="dialog">
+    <div
+      className="item-modal"
+      onClick={handleOverlayClick}
+      aria-modal="true"
+      role="dialog"
+    >
       <div className="item-modal__content">
-        <button className="close-btn" onClick={onClose} aria-label="Close"></button>
+        <button
+          className="close-btn"
+          onClick={onClose}
+          aria-label="Close"
+        ></button>
         <div className="item-details">
           {item ? (
             <>
@@ -36,8 +45,8 @@ function ItemModal({ item, isOpen, onClose, onDelete }) {
                 <div className="item-details__name-row">
                   <h3 className="item-details__name">{item.name}</h3>
                   {isOwn && (
-                    <button 
-                      className="item-details__delete-btn" 
+                    <button
+                      className="item-details__delete-btn"
                       onClick={handleDelete}
                       aria-label="Delete item"
                     >

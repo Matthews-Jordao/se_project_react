@@ -21,13 +21,13 @@
     gap: 16px;
     align-items: center;
   }
-  
+
   .profile__sidebar {
     min-width: unset;
     width: 100%;
     max-width: 400px;
   }
-  
+
   .profile__clothing-section {
     width: 100%;
   }
