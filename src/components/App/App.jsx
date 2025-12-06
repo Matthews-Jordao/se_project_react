@@ -260,9 +260,10 @@ function AppContent() {
                     <Profile
                       clothingItems={clothingItems}
                       onItemClick={handleOpenItemModal}
-                      onAddItem={handleOpenAddItem}
+                      onAddClothes={handleOpenAddItem}
                       onCardLike={handleCardLike}
-                      onEditProfile={() => setIsEditProfileModalOpen(true)}
+                      onEditClick={() => setIsEditProfileModalOpen(true)}
+                      isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
                 }
