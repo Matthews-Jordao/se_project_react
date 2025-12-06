@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import './WeatherCard.css';
 import CurrentTemperatureUnitContext from '../../../../contexts/CurrentTemperatureUnitContext.js';
 
-// Import all weather background SVGs
 import weatherCloudyDay from '../../../../assets/weather-backgrounds/weather-cloudy-day.svg';
 import weatherCloudyNight from '../../../../assets/weather-backgrounds/weather-cloudy-night.svg';
 import weatherFogDay from '../../../../assets/weather-backgrounds/weather-fog-day.svg';
@@ -17,7 +16,6 @@ import weatherStormNight from '../../../../assets/weather-backgrounds/weather-st
 import weatherSunnyDay from '../../../../assets/weather-backgrounds/weather-sunny-day.svg';
 import weatherSunnyNight from '../../../../assets/weather-backgrounds/weather-sunny-night.svg';
 
-// Create a mapping object for weather backgrounds
 const weatherBackgrounds = {
   sunny: {
     day: weatherSunnyDay,
@@ -47,7 +45,7 @@ const weatherBackgrounds = {
 
 function getWeatherBackground(weatherType, isDay) {
   const timeOfDay = isDay ? 'day' : 'night';
-  const defaultBackground = weatherBackgrounds.cloudy[timeOfDay]; // fallback
+  const defaultBackground = weatherBackgrounds.cloudy[timeOfDay];
   
   return weatherBackgrounds[weatherType]?.[timeOfDay] || defaultBackground;
 }

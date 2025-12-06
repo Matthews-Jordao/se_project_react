@@ -13,14 +13,12 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm, itemName }) {
   return (
     <div className="delete-modal" onClick={handleOverlayClick} aria-modal="true" role="dialog">
       <div className="delete-modal__content">
-        <button className="delete-modal__close-btn" onClick={onClose} aria-label="Close"></button>
+        <button className="delete-modal__close-btn" onClick={onClose} aria-label="Close">&#10005;</button>
         <div className="delete-modal__body">
           <h3 className="delete-modal__title">
-            Are you sure you want to delete this item?
-          </h3>
-          <p className="delete-modal__text">
+            Are you sure you want to delete this item?<br />
             This action is irreversible.
-          </p>
+          </h3>
           <div className="delete-modal__buttons">
             <button 
               className="delete-modal__confirm-btn" 

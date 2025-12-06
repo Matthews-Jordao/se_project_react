@@ -1,31 +1,38 @@
-
-
 # WTWR (What To Wear?)
 
-WTWR is a weather-driven clothing recommendation app and database. You can add clothing items to your personal collection, specifying the type of weather each item is suitable for. The app automatically determines the current weather in your area and suggests what to wear from your database, making it easy to dress appropriately every day.
+## About
 
-## Features
-- Real-time weather info
-- Clothing suggestions based on temperature
-- Add your own garments
-- Responsive, modern UI
+This is the front end for my WTWR app. The idea is pretty simple - it checks the weather where you are and then shows you clothes from your wardrobe that match the conditions. So if it's cold out, you'll see your jackets and sweaters. If it's hot, t-shirts and shorts.
 
-## Technologies Used
+I built this with React and Vite. Users can sign up, log in, add their own clothes to the database, and like items. The weather data comes from OpenWeather API.
+
+## Links
+
+**Backend repo:** https://github.com/Matthews-Jordao/se_project_express
+
+## What it does
+
+- Shows current weather and temperature (you can switch between F and C)
+- Suggests clothes based on how hot/cold it is
+- Login and signup with JWT tokens
+- Add new clothing items with an image URL
+- Like/unlike clothes
+- Edit your profile info
+- Delete items you added
+
+## Tech
+
 - React
+- React Router
 - Vite
-- CSS Modules
-- JavaScript (ES6+)
+- Context API for state
+- CSS
 
+## Running it
 
-## Demo
-[Live Demo on GitHub Pages] (https://github.com/Matthews-Jordao/se_project_react) 
-
-## Getting Started
-Clone the repo and run:
 ```bash
 npm install
 npm run dev
 ```
 
-## License
-MIT
+Opens on localhost:3000. You'll need the backend running on port 3001 too.

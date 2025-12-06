@@ -1,7 +1,6 @@
 import React from 'react';
 import ModalWithForm from '../../common/ModalWithForm/ModalWithForm.jsx';
 import { useForm } from '../../../hooks/useForm.js';
-import './AddItemModal.css';
 
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   const { values, handleChange, resetForm } = useForm({
@@ -18,9 +17,8 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
     if (!isFormValid) return;
     
     const newItem = {
-      _id: Date.now().toString(),
       name: values.name,
-      link: values.imageUrl,
+      imageUrl: values.imageUrl,
       weather: values.weather,
     };
     
@@ -46,7 +44,6 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       onSubmit={handleSubmit}
       disabled={!isFormValid}
     >
-      {/* Name input group */}
       <div className="modal__input-group">
         <label className="modal__label" htmlFor="item-name">Name</label>
         <input
@@ -61,7 +58,6 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
         />
       </div>
       
-      {/* Image URL input group */}
       <div className="modal__input-group">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <label className="modal__label" htmlFor="item-imageUrl">Image</label>
@@ -81,7 +77,6 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
         />
       </div>
       
-      {/* Weather type select */}
       <div className="modal__weather-group">
         <div className="modal__label">Select the weather type:</div>
         <div className="modal__weather-options">

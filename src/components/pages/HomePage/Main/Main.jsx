@@ -5,7 +5,7 @@ import WeatherCard from '../WeatherCard/WeatherCard.jsx';
 import { getWeatherCondition } from '../../../../utils/weatherApi.js';
 import CurrentTemperatureUnitContext from '../../../../contexts/CurrentTemperatureUnitContext.js';
 
-function Main({ clothingItems, onItemClick, weather }) {
+function Main({ clothingItems, onItemClick, weather, onCardLike, isLoggedIn }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   
   const temp = weather?.temperature?.F;
@@ -24,7 +24,13 @@ function Main({ clothingItems, onItemClick, weather }) {
       
       {filteredItems && filteredItems.length > 0 ? (
         filteredItems.map(item => (
-          <ItemCard key={item._id} item={item} onClick={onItemClick || (() => {})} />
+          <ItemCard 
+            key={item._id} 
+            item={item} 
+            onClick={onItemClick || (() => {})}
+            onCardLike={onCardLike}
+            isLoggedIn={isLoggedIn}
+          />
         ))
       ) : (
         <div className="main__empty-state">

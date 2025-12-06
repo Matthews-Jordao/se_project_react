@@ -1,3 +1,4 @@
+@import './vendor/normalize.css';
 
 /* Global Cabinet Grotesk font import */
 @font-face {
@@ -12,6 +13,13 @@
   font-family: 'Cabinet Grotesk';
   src: url('/src/assets/fonts/CabinetGrotesk-Medium.otf') format('opentype');
   font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('/src/assets/fonts/CabinetGrotesk-Regular.otf') format('opentype');
+  font-weight: 400;
   font-style: normal;
 }
 

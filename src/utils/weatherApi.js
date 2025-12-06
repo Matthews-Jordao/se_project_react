@@ -19,7 +19,6 @@ export async function fetchWeatherData(coords = DEFAULT_COORDS) {
 export function extractWeatherInfo(apiData) {
   const weatherTypeRaw = apiData.weather?.[0]?.main?.toLowerCase() || '';
   
-  // Map weather types to app backgrounds
   let weatherType;
   switch (weatherTypeRaw) {
     case 'clear':
@@ -48,7 +47,6 @@ export function extractWeatherInfo(apiData) {
       weatherType = 'cloudy';
   }
 
-  // Check if it's day or night
   const now = apiData.dt || Math.floor(Date.now() / 1000);
   const sunrise = apiData.sys?.sunrise;
   const sunset = apiData.sys?.sunset;
@@ -61,7 +59,7 @@ export function extractWeatherInfo(apiData) {
     city: apiData.name,
     temperature: {
       F: apiData.main?.temp,
-      C: Math.round((apiData.main?.temp - 32) * 5/9) // convert F to C
+      C: Math.round((apiData.main?.temp - 32) * 5/9)
     },
     weatherType,
     description: apiData.weather?.[0]?.description || '',

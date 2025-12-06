@@ -15,11 +15,18 @@
 .item-card:hover {
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-.item-card__name-wrapper {
+
+.item-card__header {
   position: absolute;
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.item-card__name-wrapper {
   background: #fff;
   border-radius: 4px;
   padding: 2px 12px;
@@ -39,4 +46,32 @@
   background: transparent;
   border-radius: 4px;
   padding: 0;
+}
+
+.item-card__like-btn {
+  width: 18px;
+  height: 15px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.item-card__like-btn:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.item-card__like-btn_active {
+  opacity: 1;
+}
+
+.item-card__like-icon {
+  width: 18px;
+  height: 15px;
+  object-fit: contain;
 }

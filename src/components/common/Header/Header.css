@@ -103,6 +103,21 @@
   object-fit: cover;
 }
 
+.header__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #2f80ed;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
 .header__profile-link {
   display: flex;
   align-items: center;
@@ -113,4 +128,22 @@
 
 .header__profile-link:hover {
   opacity: 0.8;
+}
+
+.header__auth-btn {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.header__auth-btn:hover {
+  opacity: 0.7;
 }

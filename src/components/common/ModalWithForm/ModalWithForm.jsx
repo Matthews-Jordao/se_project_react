@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import './ModalWithForm.css';
 
@@ -11,6 +10,7 @@ function ModalWithForm({
   buttonText = 'Submit',
   disabled = false,
   onSubmit,
+  footerContent = null, // New prop for custom footer
 }) {
   useEffect(() => {
     function handleEsc(e) {
@@ -44,9 +44,11 @@ function ModalWithForm({
         <h2 className="modal__title">{title}</h2>
         <form className="modal__form" name={name} onSubmit={onSubmit}>
           {children}
-          <button className="modal__submit" type="submit" disabled={disabled}>
-            {buttonText}
-          </button>
+          {footerContent || (
+            <button className="modal__submit" type="submit" disabled={disabled}>
+              {buttonText}
+            </button>
+          )}
         </form>
       </div>
     </div>

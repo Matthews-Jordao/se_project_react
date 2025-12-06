@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './ItemModal.css';
+import CurrentUserContext from '../../../contexts/CurrentUserContext.js';
 
 function ItemModal({ item, isOpen, onClose, onDelete }) {
+  const currentUser = useContext(CurrentUserContext);
   if (!isOpen) return null;
+
+  const isOwn = item?.owner === currentUser?._id;
   
   function handleOverlayClick(e) {
     if (e.target.classList.contains('item-modal')) {
@@ -31,13 +35,15 @@ function ItemModal({ item, isOpen, onClose, onDelete }) {
               <div className="item-details__info">
                 <div className="item-details__name-row">
                   <h3 className="item-details__name">{item.name}</h3>
-                  <button 
-                    className="item-details__delete-btn" 
-                    onClick={handleDelete}
-                    aria-label="Delete item"
-                  >
-                    Delete item
-                  </button>
+                  {isOwn && (
+                    <button 
+                      className="item-details__delete-btn" 
+                      onClick={handleDelete}
+                      aria-label="Delete item"
+                    >
+                      Delete item
+                    </button>
+                  )}
                 </div>
                 <p className="item-details__weather">
                   Weather: {item.weather || 'unknown'}

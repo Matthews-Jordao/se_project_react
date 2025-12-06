@@ -2,20 +2,43 @@
 
 .sidebar {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   width: 229px;
-  height: 56px;
   opacity: 1;
-  gap: 16px;
+  gap: 20px;
   box-sizing: border-box;
 }
 
+.sidebar__user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
 .sidebar__avatar {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
+}
+
+.sidebar__avatar-placeholder {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #2f80ed;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
   flex-shrink: 0;
 }
 
@@ -26,15 +49,55 @@
   line-height: 100%;
   letter-spacing: 0;
   margin: 0;
-  color: inherit;
-  flex: 1;
+  color: rgba(0, 0, 0, 1);
+}
+
+.sidebar__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.sidebar__btn {
+  width: 171px;
+  height: 25px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 1);
+  padding: 0;
+  transition: opacity 0.2s ease;
+  text-align: left;
+}
+
+.sidebar__btn:hover {
+  opacity: 0.7;
+}
+
+.sidebar__btn--edit {
+  /* Same styling as base button */
+}
+
+.sidebar__btn--logout {
+  /* Same styling as base button */
 }
 
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 100%;
-    height: auto;
-    min-height: 56px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .sidebar__user-info {
+    flex: 1;
   }
   
   .sidebar__avatar {
@@ -45,5 +108,18 @@
   .sidebar__username {
     font-size: 18px;
     line-height: 22px;
+  }
+  
+  .sidebar__buttons {
+    flex-direction: row;
+    gap: 8px;
+    width: auto;
+  }
+  
+  .sidebar__btn {
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+    font-size: 14px;
   }
 }

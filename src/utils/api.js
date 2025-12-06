@@ -11,14 +11,14 @@ export function getItems() {
   return fetch(`${baseUrl}/items`).then(processServerResponse);
 }
 
-export function addItem(item) {
+export function addItem(item, token) {
   return fetch(`${baseUrl}/items`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      _id: Date.now().toString(), // simple ID generation for now
       name: item.name,
       weather: item.weather,
       imageUrl: item.link || item.imageUrl,
@@ -26,8 +26,43 @@ export function addItem(item) {
   }).then(processServerResponse);
 }
 
-export function deleteItem(id) {
+export function deleteItem(id, token) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  }).then(processServerResponse);
+}
+
+export function likeItem(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  }).then(processServerResponse);
+}
+
+export function unlikeItem(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  }).then(processServerResponse);
+}
+
+export function updateProfile({ name, avatar }, token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
   }).then(processServerResponse);
 }
