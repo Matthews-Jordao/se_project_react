@@ -1,17 +1,28 @@
+// Styles
 import './App.css';
+
+// React imports
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+
+// Common components
 import Header from '../common/Header/Header.jsx';
 import Footer from '../common/Footer/Footer.jsx';
+import ProtectedRoute from '../common/ProtectedRoute/ProtectedRoute.jsx';
+
+// Page components
 import Main from '../pages/HomePage/Main/Main.jsx';
 import Profile from '../pages/ProfilePage/Profile/Profile.jsx';
-import ProtectedRoute from '../common/ProtectedRoute/ProtectedRoute.jsx';
+
+// Modal components
 import AddItemModal from '../modals/AddItemModal/AddItemModal.jsx';
 import ItemModal from '../modals/ItemModal/ItemModal.jsx';
 import DeleteConfirmationModal from '../modals/DeleteConfirmationModal/DeleteConfirmationModal.jsx';
 import RegisterModal from '../modals/RegisterModal/RegisterModal.jsx';
 import LoginModal from '../modals/LoginModal/LoginModal.jsx';
 import EditProfileModal from '../modals/EditProfileModal/EditProfileModal.jsx';
+
+// Utils/API
 import { fetchWeatherData } from '../../utils/weatherApi.js';
 import {
   getItems,
@@ -22,6 +33,8 @@ import {
   unlikeItem,
 } from '../../utils/api.js';
 import { signup, signin, checkToken } from '../../utils/auth.js';
+
+// Contexts
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext.js';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 
@@ -57,8 +70,12 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    fetchWeatherData().then(setWeather).catch(console.error);
-    getItems().then(setClothingItems).catch(console.error);
+    fetchWeatherData().then(setWeather).catch((err) => {
+      console.error('Weather data fetch error:', err);
+    });
+    getItems().then(setClothingItems).catch((err) => {
+      console.error('Get items error:', err);
+    });
   }, []);
 
   const handleOpenItemModal = (item) => {
@@ -96,19 +113,8 @@ function AppContent() {
 
   const handleRegister = (data, resetForm) => {
     signup(data)
-      .then(() => signin({ email: data.email, password: data.password }))
-      .then((res) => {
-        if (res.token) {
-          localStorage.setItem('jwt', res.token);
-          return checkToken(res.token);
-        }
-      })
-      .then((user) => {
-        setCurrentUser(user);
-        setIsLoggedIn(true);
-        resetForm();
-        handleCloseModal();
-        navigate('/');
+      .then(() => {
+        handleLogin({ email: data.email, password: data.password }, resetForm);
       })
       .catch((err) => {
         console.error('Registration error:', err);
@@ -162,7 +168,9 @@ function AppContent() {
         resetForm();
         handleCloseModal();
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error('Add item error:', err);
+      });
   };
 
   const handleOpenDeleteModal = (cardToDelete) => {
@@ -180,7 +188,9 @@ function AppContent() {
           );
           handleCloseModal();
         })
-        .catch(console.error);
+        .catch((err) => {
+          console.error('Delete item error:', err);
+        });
     }
   };
 
@@ -193,7 +203,9 @@ function AppContent() {
           cards.map((item) => (item._id === _id ? updatedCard : item))
         );
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error('Like/unlike item error:', err);
+      });
   };
 
   const handleToggleSwitchChange = () => {
@@ -263,6 +275,7 @@ function AppContent() {
                       onAddClothes={handleOpenAddItem}
                       onCardLike={handleCardLike}
                       onEditClick={() => setIsEditProfileModalOpen(true)}
+                      onLogoutClick={handleLogout}
                       isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
@@ -309,7 +322,6 @@ function AppContent() {
           />
           <EditProfileModal
             isOpen={isEditProfileModalOpen}
-            currentUser={currentUser}
             onEditProfile={handleEditProfile}
             onCloseModal={handleCloseModal}
           />

@@ -1,14 +1,9 @@
+import { checkResponse } from './request.js';
+
 const baseUrl = 'http://localhost:3001';
 
-function processServerResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-}
-
 export function getItems() {
-  return fetch(`${baseUrl}/items`).then(processServerResponse);
+  return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
 export function addItem(item, token) {
@@ -23,7 +18,7 @@ export function addItem(item, token) {
       weather: item.weather,
       imageUrl: item.link || item.imageUrl,
     }),
-  }).then(processServerResponse);
+  }).then(checkResponse);
 }
 
 export function deleteItem(id, token) {
@@ -33,7 +28,7 @@ export function deleteItem(id, token) {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-  }).then(processServerResponse);
+  }).then(checkResponse);
 }
 
 export function likeItem(id, token) {
@@ -43,7 +38,7 @@ export function likeItem(id, token) {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-  }).then(processServerResponse);
+  }).then(checkResponse);
 }
 
 export function unlikeItem(id, token) {
@@ -53,7 +48,7 @@ export function unlikeItem(id, token) {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-  }).then(processServerResponse);
+  }).then(checkResponse);
 }
 
 export function updateProfile({ name, avatar }, token) {
@@ -64,5 +59,5 @@ export function updateProfile({ name, avatar }, token) {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar }),
-  }).then(processServerResponse);
+  }).then(checkResponse);
 }
