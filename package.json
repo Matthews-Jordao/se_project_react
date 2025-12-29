@@ -4,6 +4,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "deploy": "npm run build && scp -r ./dist/* matthewsj19@wtwr.bad.mn:/home/matthewsj19/frontend",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
