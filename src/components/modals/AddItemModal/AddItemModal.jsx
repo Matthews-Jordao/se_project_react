@@ -10,7 +10,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   });
   
   const [selectedFile, setSelectedFile] = useState(null);
-  const [uploadMode, setUploadMode] = useState('url'); // 'url' or 'file'
+  const [uploadMode, setUploadMode] = useState('file'); // 'url' or 'file'
 
   const isValidImageLink = /^https?:\/\/.+\.(jpg|jpeg|png|gif|svg)$/.test(
     values.imageUrl?.trim() || ''
@@ -75,7 +75,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
 
     onAddItem(formData, resetForm, () => {
       setSelectedFile(null);
-      setUploadMode('url');
+      setUploadMode('file');
     });
   };
 
@@ -119,7 +119,24 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           Image
         </label>
         
-        {uploadMode === 'url' ? (
+        {uploadMode === 'file' ? (
+          <div className="modal__image-input-wrapper">
+            <input
+              type="file"
+              id="item-image-file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="modal__input modal__input--with-button"
+            />
+            <button
+              type="button"
+              className="modal__upload-switch-btn"
+              onClick={switchToUrlMode}
+            >
+              Use URL instead
+            </button>
+          </div>
+        ) : (
           <div className="modal__image-input-wrapper">
             <input
               className={`modal__input modal__input--with-button ${values.imageUrl && !isValidImageLink ? 'modal__input--error' : ''}`}
@@ -139,37 +156,12 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
               Upload image
             </button>
           </div>
-        ) : (
-          <div className="modal__file-input-wrapper">
-            <input
-              type="file"
-              id="item-image-file"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="modal__file-input"
-            />
-            <label htmlFor="item-image-file" className="modal__file-input-label">
-              {selectedFile ? selectedFile.name : 'Choose image file'}
-            </label>
-            <button
-              type="button"
-              className="modal__url-switch-link"
-              onClick={switchToUrlMode}
-            >
-              Use URL instead
-            </button>
-          </div>
         )}
         
         {values.imageUrl && !isValidImageLink && uploadMode === 'url' && (
           <span className="modal__error">
             This is not a valid image link
           </span>
-        )}
-        {selectedFile && uploadMode === 'file' && (
-          <div className="modal__file-selected">
-            Selected: {selectedFile.name}
-          </div>
         )}
       </div>
 
