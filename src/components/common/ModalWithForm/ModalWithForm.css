@@ -105,6 +105,96 @@
   color: #000;
 }
 
+/* Image Input Wrapper */
+.modal__image-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.modal__input--with-button {
+  padding-right: 120px; /* Make space for the button */
+}
+
+.modal__input--error {
+  border-bottom: 1px solid #ff4d00;
+}
+
+.modal__upload-switch-btn {
+  position: absolute;
+  right: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: underline;
+  transition: color 0.2s;
+  padding: 4px 8px;
+}
+
+.modal__upload-switch-btn:hover {
+  color: #000;
+}
+
+/* File Input Wrapper */
+.modal__file-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal__file-input {
+  display: none;
+}
+
+.modal__file-input-label {
+  display: inline-block;
+  padding: 12px 16px;
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s;
+  text-align: center;
+  min-height: 20px;
+  box-sizing: border-box;
+}
+
+.modal__file-input-label:hover {
+  background: #eee;
+}
+
+.modal__url-switch-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: underline;
+  transition: color 0.2s;
+  padding: 0;
+  align-self: flex-start;
+}
+
+.modal__url-switch-link:hover {
+  color: #000;
+}
+
+.modal__file-selected {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
 /* Weather Selection Group */
 .modal__weather-group {
   display: flex;
@@ -246,4 +336,72 @@
 .modal_type_login .modal__content {
   width: 496px;
   height: 304px;
+}
+
+/* Mobile responsive adjustments for modals */
+@media screen and (max-width: 768px) {
+  .modal__content {
+    width: 90vw;
+    max-width: 400px;
+    height: auto;
+    min-height: 300px;
+    margin: 20px;
+    padding: 24px 20px 28px;
+  }
+
+  .modal__input {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .modal__title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .modal__close {
+    right: 20px;
+    top: 16px;
+  }
+
+  .modal_type_register .modal__content,
+  .modal_type_login .modal__content {
+    width: 90vw;
+    max-width: 400px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modal__content {
+    width: 95vw;
+    max-width: 320px;
+    padding: 20px 16px 24px;
+    margin: 16px;
+  }
+
+  .modal__title {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .modal__input {
+    font-size: 14px;
+  }
+
+  .modal__weather-text,
+  .modal__label {
+    font-size: 14px;
+  }
+
+  .modal__submit {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .modal__close {
+    right: 16px;
+    top: 12px;
+    font-size: 18px;
+  }
 }

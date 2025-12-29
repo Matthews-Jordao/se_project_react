@@ -20,6 +20,7 @@
     flex-direction: column;
     gap: 16px;
     align-items: center;
+    margin-bottom: 60px;
   }
 
   .profile__sidebar {
@@ -30,5 +31,16 @@
 
   .profile__clothing-section {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile {
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .profile__sidebar {
+    max-width: 100%;
   }
 }

@@ -12,6 +12,36 @@
   position: relative;
   overflow: hidden;
 }
+
+/* Mobile responsive adjustments for ItemCard */
+@media screen and (max-width: 768px) {
+  .item-card {
+    width: 280px;
+    height: 280px;
+    border-radius: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .item-card {
+    width: 250px;
+    height: 250px;
+    border-radius: 12px;
+  }
+
+  .item-card__name {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .item-card {
+    width: 100%;
+    max-width: 220px;
+    height: 220px;
+  }
+}
 .item-card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }

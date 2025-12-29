@@ -11,18 +11,30 @@ export function getItems() {
 }
 
 export function addItem(item, token) {
-  return fetch(`${baseUrl}/items`, {
+  // Check if item is FormData (file upload) or regular object (URL)
+  const isFormData = item instanceof FormData;
+  
+  const options = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
+  };
+
+  if (isFormData) {
+    // Don't set Content-Type for FormData, let browser set it with boundary
+    options.body = item;
+  } else {
+    // Regular JSON request
+    options.headers['Content-Type'] = 'application/json';
+    options.body = JSON.stringify({
       name: item.name,
       weather: item.weather,
       imageUrl: item.link || item.imageUrl,
-    }),
-  }).then(checkResponse);
+    });
+  }
+
+  return fetch(`${baseUrl}/items`, options).then(checkResponse);
 }
 
 export function deleteItem(id, token) {

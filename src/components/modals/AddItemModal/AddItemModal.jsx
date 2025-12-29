@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ModalWithForm from '../../common/ModalWithForm/ModalWithForm.jsx';
 import { useForm } from '../../../hooks/useForm.js';
 
@@ -8,23 +8,75 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
     imageUrl: '',
     weather: '',
   });
+  
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploadMode, setUploadMode] = useState('url'); // 'url' or 'file'
 
   const isValidImageLink = /^https?:\/\/.+\.(jpg|jpeg|png|gif|svg)$/.test(
     values.imageUrl?.trim() || ''
   );
-  const isFormValid = values.name?.trim() && isValidImageLink && values.weather;
+  
+  // Form is valid if name and weather are provided, and either URL or file is selected
+  const isFormValid = values.name?.trim() && 
+    values.weather && 
+    (selectedFile || (uploadMode === 'url' && isValidImageLink));
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+    // Clear URL when file is selected
+    if (file) {
+      handleChange({
+        target: {
+          name: 'imageUrl',
+          value: '',
+        },
+      });
+    }
+  };
+
+  const handleUrlChange = (e) => {
+    // Clear selected file when typing URL
+    if (e.target.value && selectedFile) {
+      setSelectedFile(null);
+    }
+    handleChange(e);
+  };
+
+  const switchToFileMode = () => {
+    setUploadMode('file');
+    setSelectedFile(null);
+    handleChange({
+      target: {
+        name: 'imageUrl',
+        value: '',
+      },
+    });
+  };
+
+  const switchToUrlMode = () => {
+    setUploadMode('url');
+    setSelectedFile(null);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormValid) return;
 
-    const newItem = {
-      name: values.name,
-      imageUrl: values.imageUrl,
-      weather: values.weather,
-    };
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('weather', values.weather);
+    
+    if (selectedFile) {
+      formData.append('image', selectedFile);
+    } else {
+      formData.append('imageUrl', values.imageUrl);
+    }
 
-    onAddItem(newItem, resetForm);
+    onAddItem(formData, resetForm, () => {
+      setSelectedFile(null);
+      setUploadMode('url');
+    });
   };
 
   const handleWeatherChange = (weatherType) => {
@@ -63,26 +115,62 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       </div>
 
       <div className="modal__input-group">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <label className="modal__label" htmlFor="item-imageUrl">
-            Image
-          </label>
-          {values.imageUrl && !isValidImageLink && (
-            <span className="modal__error">
-              (This is not a valid image link)
-            </span>
-          )}
-        </div>
-        <input
-          className="modal__input"
-          id="item-imageUrl"
-          name="imageUrl"
-          type="url"
-          value={values.imageUrl || ''}
-          onChange={handleChange}
-          placeholder="Image URL"
-          required
-        />
+        <label className="modal__label" htmlFor="item-imageUrl">
+          Image
+        </label>
+        
+        {uploadMode === 'url' ? (
+          <div className="modal__image-input-wrapper">
+            <input
+              className={`modal__input modal__input--with-button ${values.imageUrl && !isValidImageLink ? 'modal__input--error' : ''}`}
+              id="item-imageUrl"
+              name="imageUrl"
+              type="url"
+              value={values.imageUrl || ''}
+              onChange={handleUrlChange}
+              placeholder="Image URL"
+            />
+            <button
+              type="button"
+              className="modal__upload-switch-btn"
+              onClick={switchToFileMode}
+              title="Upload image file instead"
+            >
+              Upload image
+            </button>
+          </div>
+        ) : (
+          <div className="modal__file-input-wrapper">
+            <input
+              type="file"
+              id="item-image-file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="modal__file-input"
+            />
+            <label htmlFor="item-image-file" className="modal__file-input-label">
+              {selectedFile ? selectedFile.name : 'Choose image file'}
+            </label>
+            <button
+              type="button"
+              className="modal__url-switch-link"
+              onClick={switchToUrlMode}
+            >
+              Use URL instead
+            </button>
+          </div>
+        )}
+        
+        {values.imageUrl && !isValidImageLink && uploadMode === 'url' && (
+          <span className="modal__error">
+            This is not a valid image link
+          </span>
+        )}
+        {selectedFile && uploadMode === 'file' && (
+          <div className="modal__file-selected">
+            Selected: {selectedFile.name}
+          </div>
+        )}
       </div>
 
       <div className="modal__weather-group">

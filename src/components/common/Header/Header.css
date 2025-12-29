@@ -77,6 +77,60 @@
     width: 70px;
     height: 32px;
   }
+
+  .header__add-clothes {
+    font-size: 18px;
+  }
+
+  .header__user-name {
+    font-size: 18px;
+  }
+
+  .header__auth-btn {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .header__right {
+    gap: 8px;
+  }
+
+  .header__date-location {
+    margin-left: 8px;
+    font-size: 14px;
+    display: none; /* Hide on very small screens to save space */
+  }
+
+  .header__logo {
+    width: 60px;
+    height: 28px;
+  }
+
+  .header__add-clothes {
+    font-size: 16px;
+  }
+
+  .header__user-name {
+    font-size: 16px;
+    display: none; /* Hide username on small screens, show only avatar */
+  }
+
+  .header__auth-btn {
+    font-size: 16px;
+  }
+
+  .header__profile-photo,
+  .header__avatar-placeholder {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
 }
 .header__add-clothes {
   font-family: 'Cabinet Grotesk', sans-serif;

@@ -30,3 +30,24 @@
   line-height: 20px;
   letter-spacing: 0;
 }
+
+/* Mobile responsive adjustments for Footer */
+@media screen and (max-width: 768px) {
+  .footer__content {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .footer__developer,
+  .footer__year {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer__developer,
+  .footer__year {
+    font-size: 12px;
+  }
+}

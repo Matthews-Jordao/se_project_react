@@ -8,6 +8,7 @@
   letter-spacing: 0;
   margin-bottom: 14px;
 }
+
 .main {
   flex: 1;
   background: transparent;
@@ -25,4 +26,30 @@
   text-align: center;
   margin-top: 24px;
   color: #888;
+}
+
+/* Mobile responsive adjustments for Main layout */
+@media screen and (max-width: 768px) {
+  .main {
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+
+  .main__title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main {
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .main__title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
 }
