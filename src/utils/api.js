@@ -1,9 +1,10 @@
 import { checkResponse } from './request.js';
 
+// Force HTTPS in production
 const baseUrl = import.meta.env.VITE_API_BASE_URL || 
-  (import.meta.env.MODE === "production" || import.meta.env.PROD
-    ? "https://api.wtwr.bad.mn"
-    : "http://localhost:3001");
+  (!import.meta.env.DEV ? "https://api.wtwr.bad.mn" : "http://localhost:3001");
+
+console.log('API Base URL:', baseUrl, 'Mode:', import.meta.env.MODE, 'DEV:', import.meta.env.DEV, 'PROD:', import.meta.env.PROD);
 
 export function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
