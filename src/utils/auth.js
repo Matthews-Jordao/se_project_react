@@ -1,8 +1,9 @@
 import { checkResponse } from './request.js';
 
-const baseUrl = process.env.NODE_ENV === "production" 
-  ? "https://api.wtwr.bad.mn"
-  : "http://localhost:3001";
+const baseUrl = import.meta.env.VITE_API_BASE_URL || 
+  (import.meta.env.MODE === "production" || import.meta.env.PROD
+    ? "https://api.wtwr.bad.mn"
+    : "http://localhost:3001");
 
 export function signup({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {

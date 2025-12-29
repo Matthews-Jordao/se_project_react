@@ -7,7 +7,7 @@
   "deploy": "npm run build && scp -r ./dist/* matthewsj19@wtwr.bad.mn:/home/matthewsj19/frontend",
   "scripts": {
     "dev": "vite --open",
-    "build": "vite build",
+    "build": "vite build --mode production",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
