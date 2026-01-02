@@ -23,6 +23,11 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    console.log('=== FILE CHANGE ===');
+    console.log('File selected:', file);
+    console.log('File name:', file?.name);
+    console.log('File size:', file?.size);
+    console.log('File type:', file?.type);
     setSelectedFile(file);
     // Clear URL when file is selected
     if (file) {
@@ -63,16 +68,25 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
     e.preventDefault();
     if (!isFormValid) return;
 
+    console.log('=== SUBMIT DEBUG ===');
+    console.log('uploadMode:', uploadMode);
+    console.log('selectedFile:', selectedFile);
+    console.log('values.imageUrl:', values.imageUrl);
+    console.log('values:', values);
+
     const formData = new FormData();
     formData.append('name', values.name);
     formData.append('weather', values.weather);
     
     if (selectedFile) {
+      console.log('Adding file to FormData:', selectedFile.name);
       formData.append('image', selectedFile);
     } else {
+      console.log('No file, adding imageUrl:', values.imageUrl);
       formData.append('imageUrl', values.imageUrl);
     }
 
+    console.log('Submitting FormData');
     onAddItem(formData, resetForm, () => {
       setSelectedFile(null);
       setUploadMode('file');

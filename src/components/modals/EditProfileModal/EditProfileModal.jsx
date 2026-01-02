@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import ModalWithForm from '../../common/ModalWithForm/ModalWithForm.jsx';
 import { useForm } from '../../../hooks/useForm.js';
 import CurrentUserContext from '../../../contexts/CurrentUserContext.js';
@@ -14,28 +14,90 @@ const EditProfileModal = ({
     avatar: '',
   });
 
+  const [uploadMode, setUploadMode] = useState('url');
+  const [selectedFile, setSelectedFile] = useState(null);
+
   useEffect(() => {
     if (isOpen && currentUser) {
       setValues({
         name: currentUser.name || '',
         avatar: currentUser.avatar || '',
       });
+      setUploadMode('url');
+      setSelectedFile(null);
     }
   }, [isOpen, currentUser, setValues]);
 
-  const isFormValid = values.name?.trim() && values.avatar?.trim();
+  const isValidImageLink = !values.avatar || /^https?:\/\/.+\.(jpg|jpeg|png|gif|webp|bmp|svg)(\?.*)?$/i.test(values.avatar);
+  const isFormValid = values.name?.trim() && 
+    (selectedFile || (uploadMode === 'url' && values.avatar?.trim() && isValidImageLink));
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    console.log('=== AVATAR FILE CHANGE ===');
+    console.log('File selected:', file);
+    setSelectedFile(file);
+    // Clear URL when file is selected
+    if (file) {
+      handleChange({
+        target: {
+          name: 'avatar',
+          value: '',
+        },
+      });
+    }
+  };
+
+  const handleUrlChange = (e) => {
+    // Clear selected file when typing URL
+    if (e.target.value && selectedFile) {
+      setSelectedFile(null);
+    }
+    handleChange(e);
+  };
+
+  const switchToFileMode = () => {
+    setUploadMode('file');
+    setSelectedFile(null);
+    handleChange({
+      target: {
+        name: 'avatar',
+        value: '',
+      },
+    });
+  };
+
+  const switchToUrlMode = () => {
+    setUploadMode('url');
+    setSelectedFile(null);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isFormValid) return;
 
-    onEditProfile(
-      {
-        name: values.name,
-        avatar: values.avatar,
-      },
-      resetForm
-    );
+    console.log('=== PROFILE SUBMIT DEBUG ===');
+    console.log('uploadMode:', uploadMode);
+    console.log('selectedFile:', selectedFile);
+    console.log('values:', values);
+
+    const formData = new FormData();
+    formData.append('name', values.name);
+    
+    if (selectedFile) {
+      console.log('Adding avatar file to FormData:', selectedFile.name);
+      formData.append('avatar', selectedFile);
+    } else {
+      console.log('No file, adding avatar URL:', values.avatar);
+      formData.append('avatarUrl', values.avatar);
+    }
+
+    console.log('Submitting Profile FormData');
+    onEditProfile(formData, () => {
+      resetForm();
+      setSelectedFile(null);
+      setUploadMode('url');
+    });
   };
 
   return (
@@ -66,18 +128,53 @@ const EditProfileModal = ({
 
       <div className="modal__input-group">
         <label className="modal__label" htmlFor="profile-avatar">
-          Avatar URL*
+          Avatar{uploadMode === 'file' ? ' Image' : ' URL'}*
         </label>
-        <input
-          className="modal__input"
-          id="profile-avatar"
-          name="avatar"
-          type="url"
-          value={values.avatar || ''}
-          onChange={handleChange}
-          placeholder="Avatar URL"
-          required
-        />
+        
+        {uploadMode === 'file' ? (
+          <div className="modal__image-input-wrapper">
+            <input
+              type="file"
+              id="profile-avatar-file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="modal__input modal__input--with-button"
+            />
+            <button
+              type="button"
+              className="modal__upload-switch-btn"
+              onClick={switchToUrlMode}
+            >
+              Use URL instead
+            </button>
+          </div>
+        ) : (
+          <div className="modal__image-input-wrapper">
+            <input
+              className={`modal__input modal__input--with-button ${values.avatar && !isValidImageLink ? 'modal__input--error' : ''}`}
+              id="profile-avatar"
+              name="avatar"
+              type="url"
+              value={values.avatar || ''}
+              onChange={handleUrlChange}
+              placeholder="Avatar URL"
+            />
+            <button
+              type="button"
+              className="modal__upload-switch-btn"
+              onClick={switchToFileMode}
+              title="Upload avatar image instead"
+            >
+              Upload image
+            </button>
+          </div>
+        )}
+        
+        {values.avatar && !isValidImageLink && uploadMode === 'url' && (
+          <span className="modal__error">
+            This is not a valid image link
+          </span>
+        )}
       </div>
     </ModalWithForm>
   );

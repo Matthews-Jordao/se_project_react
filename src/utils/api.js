@@ -67,13 +67,28 @@ export function unlikeItem(id, token) {
   }).then(checkResponse);
 }
 
-export function updateProfile({ name, avatar }, token) {
-  return fetch(`${baseUrl}/users/me`, {
+export function updateProfile(profileData, token) {
+  // Check if profileData is FormData (file upload) or regular object (URL)
+  const isFormData = profileData instanceof FormData;
+  
+  const options = {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, avatar }),
-  }).then(checkResponse);
+  };
+
+  if (isFormData) {
+    // Don't set Content-Type for FormData, let browser set it with boundary
+    options.body = profileData;
+  } else {
+    // Regular JSON request
+    options.headers['Content-Type'] = 'application/json';
+    options.body = JSON.stringify({
+      name: profileData.name,
+      avatarUrl: profileData.avatar,
+    });
+  }
+
+  return fetch(`${baseUrl}/users/me`, options).then(checkResponse);
 }
