@@ -28,7 +28,7 @@ const EditProfileModal = ({
     }
   }, [isOpen, currentUser, setValues]);
 
-  const isValidImageLink = !values.avatar || /^https?:\/\/.+\.(jpg|jpeg|png|gif|webp|bmp|svg)(\?.*)?$/i.test(values.avatar);
+  const isValidImageLink = !values.avatar || /^https?:\/\/.+/i.test(values.avatar);
   const isFormValid = values.name?.trim() && 
     (selectedFile || (uploadMode === 'url' && values.avatar?.trim() && isValidImageLink));
 
